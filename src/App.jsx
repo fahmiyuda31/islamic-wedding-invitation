@@ -70,7 +70,7 @@ function App() {
 
         {/* Additional Meta Tags */}
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="theme-color" content="#FDA4AF" /> {/* Rose-300 color */}
+        <meta name="theme-color" content="#FDA4AF" /> Rose-300 color
       </Helmet>
 
       <AnimatePresence mode='wait'>

@@ -28,9 +28,9 @@ const LandingPage = ({ onOpenInvitation }) => (
         <div className="backdrop-blur-sm bg-white/50 p-6 sm:p-8 md:p-10 rounded-2xl border border-rose-100/50 shadow-xl">
           {/* Top Decorative Line */}
           <div className="flex items-center justify-center gap-3 mb-6 sm:mb-8">
-            <div className="h-px w-12 sm:w-16 bg-rose-200/50" />
-            <div className="w-2 h-2 rounded-full bg-rose-300" />
-            <div className="h-px w-12 sm:w-16 bg-rose-200/50" />
+            <div className="h-px w-12 sm:w-16 bg-[#C58745]" />
+            <div className="w-2 h-2 rounded-full bg-[#C58745]" />
+            <div className="h-px w-12 sm:w-16 bg-[#C58745]" />
           </div>
 
           {/* Date and Time */}
@@ -41,14 +41,16 @@ const LandingPage = ({ onOpenInvitation }) => (
             className="flex flex-col gap-4 mb-6 sm:mb-8 items-center"
           >
             <div className="inline-flex flex-col items-center space-y-1 bg-white/80 px-4 sm:px-6 py-2 sm:py-3 rounded-xl">
-              <Calendar className="w-5 h-5 text-rose-400" />
+              {/* <Calendar className="w-5 h-5 text-rose-400" /> */}
+              <Calendar className="w-5 h-5 text-[#C58745]" />
               <p className="text-gray-700 font-medium">
                 {formatEventDate(config.data.date)}
               </p>
             </div>
 
             <div className="inline-flex flex-col items-center space-y-1 bg-white/80 px-4 sm:px-6 py-2 sm:py-3 rounded-xl">
-              <Clock className="w-5 h-5 text-rose-400" />
+              {/* <Clock className="w-5 h-5 text-rose-400" /> */}
+              <Clock className="w-5 h-5 text-[#C58745]" />
               <p className="text-gray-700 font-medium">
                 {config.data.time}
               </p>
@@ -65,10 +67,12 @@ const LandingPage = ({ onOpenInvitation }) => (
             <div className="space-y-2">
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif text-gray-800 leading-tight">
                 {config.data.groomName}
-                <span className="text-rose-400 mx-2 sm:mx-3">&</span>
+                {/* <span className="text-rose-400 mx-2 sm:mx-3">&</span> */}
+                <span className="text-[#C58745] mx-2 sm:mx-3">&</span>
                 {config.data.brideName}
               </h1>
-              <div className="h-px w-16 sm:w-24 mx-auto bg-rose-200" />
+              {/* <div className="h-px w-16 sm:w-24 mx-auto bg-rose-200" /> */}
+              <div className="h-px w-16 sm:w-24 mx-auto bg-[#C58745]" />
             </div>
           </motion.div>
 
@@ -83,7 +87,8 @@ const LandingPage = ({ onOpenInvitation }) => (
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={onOpenInvitation}
-              className="group relative w-full bg-rose-500 text-white px-6 py-3 sm:px-8 sm:py-3 rounded-xl font-medium shadow-lg hover:bg-rose-600 transition-all duration-200"
+              // className="group relative w-full bg-rose-500 text-white px-6 py-3 sm:px-8 sm:py-3 rounded-xl font-medium shadow-lg hover:bg-rose-600 transition-all duration-200"
+              className="group relative w-full bg-[#C58745] text-white px-6 py-3 sm:px-8 sm:py-3 rounded-xl font-medium shadow-lg hover:bg-[#C58745] transition-all duration-200"
             >
               <span className="relative z-10 flex items-center justify-center gap-2">
                 <span>Buka Undangan</span>
@@ -94,7 +99,8 @@ const LandingPage = ({ onOpenInvitation }) => (
                   →
                 </motion.span>
               </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-rose-600 to-rose-500 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+              {/* <div className="absolute inset-0 bg-gradient-to-r from-rose-600 to-rose-500 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200" /> */}
+              <div className="absolute inset-0 bg-gradient-to-r from-[#C58745] to-[#C58745]-100 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
             </motion.button>
           </motion.div>
         </div>

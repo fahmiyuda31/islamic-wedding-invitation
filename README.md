@@ -1,4 +1,4 @@
-# Sakeenah: Modern Islamic Wedding Invitation
+# codebase: Sakeenah: Modern Islamic Wedding Invitation
 
 ![Preview](public/preview.png)
 
@@ -37,11 +37,11 @@ Edit `src/config.js` to change details like the wedding title, names, and colors
 ```JavaScript
 const config = {
   data: {
-    title: "Pernikahan Fulan & Fulana",
+    title: "Pernikahan Fahmi & Anggrie",
     description:
       "Kami akan menikah dan mengundang Anda untuk turut merayakan momen istimewa ini.",
-    groomName: "Fulan",
-    brideName: "Fulana",
+    groomName: "Fahmi",
+    brideName: "Anggrie",
     parentGroom: "Bapak Groom & Ibu Groom",
     parentBride: "Bapak Bride & Ibu Bride",
     date: "2024-12-24",

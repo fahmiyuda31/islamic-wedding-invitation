@@ -6,7 +6,7 @@ import { formatEventDate } from '@/lib/formatEventDate';
 import { safeBase64 } from '@/lib/base64';
 
 export default function Hero() {
-    const [guestName, setGuestName] = useState('');
+    const [guestName, setGuestName] = useState('Rikza');
 
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
@@ -119,8 +119,8 @@ export default function Hero() {
                         transition={{ delay: 0.2 }}
                         className="inline-block mx-auto"
                     >
-                        <span className="px-4 py-1 text-sm bg-rose-50 text-rose-600 rounded-full border border-rose-200">
-                            Catat Tanggal Penting Ini
+                        {/* <span className="px-4 py-1 text-sm bg-rose-50 text-rose-600 rounded-full border border-rose-200"> */}
+                        <span className="px-4 py-1 text-sm font-bold bg-white-50 text-[#C58745] rounded-full border border-[#C58745]">Catat Tanggal Penting Ini
                         </span>
                     </motion.div>
 
@@ -137,7 +137,8 @@ export default function Hero() {
                             initial={{ scale: 0.8, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             transition={{ delay: 0.6 }}
-                            className="text-3xl sm:text-5xl font-serif bg-clip-text text-transparent bg-gradient-to-r from-rose-600 to-pink-600"
+                            // className="text-3xl sm:text-5xl font-serif bg-clip-text text-transparent bg-gradient-to-r from-rose-600 to-pink-600"
+                            className="text-3xl sm:text-5xl font-serif bg-clip-text text-transparent bg-gradient-to-r from-[#C58745] to-orange-600"
                         >
                             {config.data.groomName} & {config.data.brideName}
                         </motion.h2>
@@ -149,11 +150,11 @@ export default function Hero() {
                         transition={{ delay: 0.8 }}
                         className="relative max-w-md mx-auto"
                     >
-                        <div className="absolute inset-0 bg-gradient-to-b from-rose-50/50 to-white/50 backdrop-blur-md rounded-2xl" />
+                        <div className="absolute inset-0 bg-gradient-to-b from-[#C58745]-50/50 to-white/50 backdrop-blur-md rounded-2xl" />
 
-                        <div className="relative px-4 sm:px-8 py-8 sm:py-10 rounded-2xl border border-rose-100/50">
+                        <div className="relative px-4 sm:px-8 py-8 sm:py-10 rounded-2xl border border-[#C58745]-100/50">
                             <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-px">
-                                <div className="w-20 sm:w-32 h-[2px] bg-gradient-to-r from-transparent via-rose-200 to-transparent" />
+                                <div className="w-20 sm:w-32 h-[2px] bg-gradient-to-r from-transparent via-[#C58745]-200 to-transparent" />
                             </div>
 
                             <div className="space-y-6 text-center">
@@ -164,7 +165,7 @@ export default function Hero() {
                                         transition={{ delay: 0.9 }}
                                         className="flex items-center justify-center space-x-2"
                                     >
-                                        <Calendar className="w-4 h-4 text-rose-400" />
+                                        <Calendar className="w-4 h-4 text-[#C58745]" />
                                         <span className="text-gray-700 font-medium text-sm sm:text-base">
                                             {formatEventDate(config.data.date, "full")}
                                         </span>
@@ -176,7 +177,7 @@ export default function Hero() {
                                         transition={{ delay: 1 }}
                                         className="flex items-center justify-center space-x-2"
                                     >
-                                        <Clock className="w-4 h-4 text-rose-400" />
+                                        <Clock className="w-4 h-4 text-[#C58745]" />
                                         <span className="text-gray-700 font-medium text-sm sm:text-base">
                                             {config.data.time}
                                         </span>
@@ -184,9 +185,9 @@ export default function Hero() {
                                 </div>
 
                                 <div className="flex items-center justify-center gap-3">
-                                    <div className="h-px w-8 sm:w-12 bg-rose-200/50" />
-                                    <div className="w-2 h-2 rounded-full bg-rose-200" />
-                                    <div className="h-px w-8 sm:w-12 bg-rose-200/50" />
+                                    <div className="h-px w-8 sm:w-12 bg-[#C58745]" />
+                                    <div className="w-2 h-2 rounded-full bg-[#C58745]" />
+                                    <div className="h-px w-8 sm:w-12 bg-[#C58745]" />
                                 </div>
 
                                 <motion.div
@@ -201,7 +202,7 @@ export default function Hero() {
                                     <p className="text-gray-600 font-medium text-sm">
                                         Bapak/Ibu/Saudara/i
                                     </p>
-                                    <p className="text-rose-500 font-semibold text-lg">
+                                    <p className="text-orange-500 font-semibold text-lg">
                                         {guestName ? guestName : "Tamu"}
                                     </p>
                                 </motion.div>
