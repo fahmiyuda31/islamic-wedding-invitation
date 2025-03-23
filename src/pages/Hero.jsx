@@ -53,9 +53,9 @@ export default function Hero() {
                         key={interval}
                         initial={{ scale: 0.5, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
-                        className="flex flex-col items-center p-3 bg-white/80 backdrop-blur-sm rounded-xl border border-rose-100"
+                        className="flex flex-col items-center p-3 bg-white/80 backdrop-blur-sm rounded-xl border border-amber-100"
                     >
-                        <span className="text-xl sm:text-2xl font-bold text-rose-600">
+                        <span className="text-xl sm:text-2xl font-bold text-amber-600">
                             {timeLeft[interval]}
                         </span>
                         <span className="text-xs text-gray-500 capitalize">{interval}</span>
@@ -92,7 +92,7 @@ export default function Hero() {
                         className="absolute"
                     >
                         <Heart
-                            className={`w-${Math.floor(Math.random() * 2) + 8} h-${Math.floor(Math.random() * 2) + 8} ${i % 3 === 0 ? 'text-rose-400' :
+                            className={`w-${Math.floor(Math.random() * 2) + 8} h-${Math.floor(Math.random() * 2) + 8} ${i % 3 === 0 ? 'text-amber-400' :
                                 i % 3 === 1 ? 'text-pink-400' :
                                     'text-red-400'
                                 }`}
@@ -119,7 +119,7 @@ export default function Hero() {
                         transition={{ delay: 0.2 }}
                         className="inline-block mx-auto"
                     >
-                        {/* <span className="px-4 py-1 text-sm bg-rose-50 text-rose-600 rounded-full border border-rose-200"> */}
+                        {/* <span className="px-4 py-1 text-sm bg-amber-50 text-amber-600 rounded-full border border-amber-200"> */}
                         <span className="px-4 py-1 text-sm font-bold bg-white-50 text-[#C58745] rounded-full border border-[#C58745]">Catat Tanggal Penting Ini
                         </span>
                     </motion.div>
@@ -137,7 +137,7 @@ export default function Hero() {
                             initial={{ scale: 0.8, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             transition={{ delay: 0.6 }}
-                            // className="text-3xl sm:text-5xl font-serif bg-clip-text text-transparent bg-gradient-to-r from-rose-600 to-pink-600"
+                            // className="text-3xl sm:text-5xl font-serif bg-clip-text text-transparent bg-gradient-to-r from-amber-600 to-pink-600"
                             className="text-3xl sm:text-5xl font-serif bg-clip-text text-transparent bg-gradient-to-r from-[#C58745] to-orange-600"
                         >
                             {config.data.groomName} & {config.data.brideName}
@@ -209,12 +209,12 @@ export default function Hero() {
                             </div>
 
                             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-px">
-                                <div className="w-20 sm:w-32 h-[2px] bg-gradient-to-r from-transparent via-rose-200 to-transparent" />
+                                <div className="w-20 sm:w-32 h-[2px] bg-gradient-to-r from-transparent via-amber-200 to-transparent" />
                             </div>
                         </div>
 
-                        <div className="absolute -top-2 -right-2 w-16 sm:w-24 h-16 sm:h-24 bg-rose-100/20 rounded-full blur-xl" />
-                        <div className="absolute -bottom-2 -left-2 w-16 sm:w-24 h-16 sm:h-24 bg-rose-100/20 rounded-full blur-xl" />
+                        <div className="absolute -top-2 -right-2 w-16 sm:w-24 h-16 sm:h-24 bg-amber-100/20 rounded-full blur-xl" />
+                        <div className="absolute -bottom-2 -left-2 w-16 sm:w-24 h-16 sm:h-24 bg-amber-100/20 rounded-full blur-xl" />
                     </motion.div>
 
                     <CountdownTimer targetDate={config.data.date} />

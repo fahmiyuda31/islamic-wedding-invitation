@@ -142,7 +142,7 @@ END:VCALENDAR`;
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="text-rose-500 hover:text-rose-600 transition-colors"
+            className="text-amber-500 hover:text-amber-600 transition-colors"
             onClick={() => setShowCalendarModal(true)}
           >
             <CalendarPlus className="w-5 h-5" />
@@ -150,15 +150,15 @@ END:VCALENDAR`;
         </div>
         <div className="space-y-3 text-gray-600">
           <div className="flex items-center space-x-3">
-            <Calendar className="w-5 h-5 text-rose-500" />
+            <Calendar className="w-5 h-5 text-amber-500" />
             <span>{formatEventDate(eventData.date)}</span>
           </div>
           <div className="flex items-center space-x-3">
-            <Clock className="w-5 h-5 text-rose-500" />
+            <Clock className="w-5 h-5 text-amber-500" />
             <span>{eventData.startTime} - {eventData.endTime} WIB</span>
           </div>
           <div className="flex items-center space-x-3">
-            <MapPin className="w-5 h-5 text-rose-500" />
+            <MapPin className="w-5 h-5 text-amber-500" />
             <span>{eventData.location}</span>
           </div>
         </div>
@@ -183,7 +183,7 @@ END:VCALENDAR`;
 
           <div className="space-y-3">
             <CalendarButton
-              icon={(props) => <Chrome {...props} className="w-5 h-5 text-rose-500" />}
+              icon={(props) => <Chrome {...props} className="w-5 h-5 text-amber-500" />}
               label="Google Calendar"
               onClick={() => window.open(googleCalendarLink(), '_blank')}
             />

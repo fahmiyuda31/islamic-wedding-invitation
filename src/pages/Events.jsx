@@ -28,7 +28,7 @@ export default function Events() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.2 }}
-                            className="inline-block text-rose-500 font-medium mb-2"
+                            className="inline-block text-amber-500 font-medium mb-2"
                         >
                             Catat Tanggal Penting Ini
                         </motion.span>
