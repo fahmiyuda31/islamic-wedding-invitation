@@ -204,7 +204,7 @@ export default function Hero(
                                         Bapak/Ibu/Saudara/i
                                     </p>
                                     <p className="text-orange-500 font-semibold text-lg">
-                                    {queryName ? queryName.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ') : "Tamu"}
+                                    {queryName ? queryName : "Tamu"}
                                     </p>
                                 </motion.div>
                             </div>

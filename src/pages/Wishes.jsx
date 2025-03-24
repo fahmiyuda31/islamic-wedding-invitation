@@ -13,15 +13,21 @@ import {
     XCircle,
     HelpCircle,
 } from 'lucide-react'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { formatEventDate } from '@/lib/formatEventDate';
+import { collection, addDoc, getDocs } from 'firebase/firestore';
+import moment from 'moment';
 
-export default function Wishes() {
+export default function Wishes({
+    db,
+    queryName
+}) {
     const [showConfetti, setShowConfetti] = useState(false);
     const [newWish, setNewWish] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [attendance, setAttendance] = useState('');
     const [isOpen, setIsOpen] = useState(false);
+    const [nameWishes, setNameWishes] = useState('')
 
     const options = [
         { value: 'ATTENDING', label: 'Ya, saya akan hadir' },
@@ -30,50 +36,76 @@ export default function Wishes() {
     ];
     // Example wishes - replace with your actual data
     const [wishes, setWishes] = useState([
-        {
-            id: 1,
-            name: "John Doe",
-            message: "Wishing you both a lifetime of love, laughter, and happiness! 🎉",
-            timestamp: "2024-12-24T23:20:00Z",
-            attending: "attending"
-        },
-        {
-            id: 2,
-            name: "Natalie",
-            message: "Wishing you both a lifetime of love, laughter, and happiness! 🎉",
-            timestamp: "2024-12-24T23:20:00Z",
-            attending: "attending"
-        },
-        {
-            id: 3,
-            name: "Abdur Rofi",
-            message: "Congratulations on your special day! May Allah bless your union! 🤲",
-            timestamp: "2024-12-25T23:08:09Z",
-            attending: "maybe"
-        }
+        // {
+        //     id: 1,
+        //     name: "John Doe",
+        //     message: "Wishing you both a lifetime of love, laughter, and happiness! 🎉",
+        //     timestamp: "2024-12-24T23:20:00Z",
+        //     attending: "attending"
+        // },
+        // {
+        //     id: 2,
+        //     name: "Natalie",
+        //     message: "Wishing you both a lifetime of love, laughter, and happiness! 🎉",
+        //     timestamp: "2024-12-24T23:20:00Z",
+        //     attending: "attending"
+        // },
+        // {
+        //     id: 3,
+        //     name: "Abdur Rofi",
+        //     message: "Congratulations on your special day! May Allah bless your union! 🤲",
+        //     timestamp: "2024-12-25T23:08:09Z",
+        //     attending: "maybe"
+        // }
     ]);
+
+    const fetchWishes = async () => {
+        const colRef = collection(db, 'wishes');
+        getDocs(colRef).then(querySnapshot => {
+            // setWishes(querySnapshot)
+            let data = []
+            querySnapshot.forEach(doc => {
+                data.push(doc.data())
+            });
+            console.log('data', data.length);
+            setWishes(data)
+        }).catch(error => {
+            console.error('Error retrieving documents: ', error);
+        });
+    }
+    useEffect(() => {
+        fetchWishes()
+    }, [])
 
     const handleSubmitWish = async (e) => {
         e.preventDefault();
-        if (!newWish.trim()) return;
+        // if (!newWish.trim()) return;
 
         setIsSubmitting(true);
         // Simulating API call
-        await new Promise(resolve => setTimeout(resolve, 1000));
-
-        const newWishObj = {
-            id: wishes.length + 1,
-            name: "Guest", // Replace with actual user name
+        // const newWishObj = {
+        //     id: wishes.length + 1,
+        //     name: "Guest", // Replace with actual user name
+        //     message: newWish,
+        //     attend: "attending",
+        //     timestamp: new Date().toISOString()
+        // };
+        const colRef = collection(db, 'wishes');
+        addDoc(colRef, {
+            name: nameWishes,
             message: newWish,
-            attend: "attending",
-            timestamp: new Date().toISOString()
-        };
+            attend: attendance,
+            timestamp: moment().format('YYYY-MM-DD HH:mm:ss')
+        }).then(docRef => {
+            console.log('Document added with ID: ', docRef.id);
+            fetchWishes()
+            setNewWish('');
+            setIsSubmitting(false);
+            // setShowConfetti(true);
+        }).catch(error => {
+            console.error('Error adding document: ', error);
+        });
 
-        setWishes(prev => [newWishObj, ...prev]);
-        setNewWish('');
-        setIsSubmitting(false);
-        setShowConfetti(true);
-        setTimeout(() => setShowConfetti(false), 3000);
     };
     const getAttendanceIcon = (status) => {
         switch (status) {
@@ -169,7 +201,9 @@ export default function Wishes() {
                                                 <div className="flex items-center space-x-1 text-gray-500 text-xs">
                                                     <Clock className="w-3 h-3" />
                                                     <time className="truncate">
-                                                        {formatEventDate(wish.timestamp)}
+                                                        {/* {formatEventDate(wish.timestamp)} */}
+                                                        {/* {moment.unix(wish.timestamp).format('DD MMM, HH:mm')} */}
+                                                        {moment(wish.timestamp).format('DD MMM, HH:mm')}
                                                     </time>
                                                 </div>
                                             </div>
@@ -181,7 +215,7 @@ export default function Wishes() {
                                         </p>
 
                                         {/* Optional: Time indicator for recent messages */}
-                                        {Date.now() - new Date(wish.timestamp).getTime() < 3600000 && (
+                                        {Date.now() - (new Date(wish.timestamp).getTime() || 0) < 3600000 && (
                                             <div className="absolute top-2 right-2">
                                                 <span className="px-2 py-1 rounded-full bg-amber-100 text-amber-600 text-xs font-medium">
                                                     New
@@ -212,8 +246,10 @@ export default function Wishes() {
                                     </div>
                                     <input
                                         type="text"
+                                        value={nameWishes ?? queryName}
                                         placeholder="Masukan nama kamu..."
                                         className="w-full px-4 py-2.5 rounded-xl bg-white/50 border border-amber-100 focus:border-amber-300 focus:ring focus:ring-amber-200 focus:ring-opacity-50 transition-all duration-200 text-gray-700 placeholder-gray-400"
+                                        onChange={(e) => setNameWishes(e.target.value)}
                                         required
                                     />
                                 </div>
@@ -284,6 +320,7 @@ export default function Wishes() {
                                     </div>
                                     <textarea
                                         placeholder="Kirimkan harapan dan doa untuk kedua mempelai..."
+                                        onChange={(e) => setNewWish(e.target.value)}
                                         className="w-full h-32 p-4 rounded-xl bg-white/50 border border-amber-100 focus:border-amber-300 focus:ring focus:ring-amber-200 focus:ring-opacity-50 resize-none transition-all duration-200"
                                         required
                                     />
