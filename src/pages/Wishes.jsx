@@ -101,6 +101,7 @@ export default function Wishes({
             fetchWishes()
             setNewWish('');
             setIsSubmitting(false);
+            alert('Wish added successfully!');
             // setShowConfetti(true);
         }).catch(error => {
             console.error('Error adding document: ', error);
