@@ -35,9 +35,10 @@ const config = {
       }
     ],
     audio: {
-      src: "/audio/fulfilling-humming.mp3",
-      title: "Fulfilling Humming",
-      autoplay: false,
+      // src: "/audio/fulfilling-humming.mp3",
+      src: "/audio/hingga_akhir_waktu.mp3",
+      title: "Hingga Akhir Waktu",
+      autoplay: true,
       loop: true
     },
     banks: [
