@@ -5,10 +5,10 @@ import Wishes from '@/pages/Wishes';
 import Gifts from '@/pages/Gifts';
 
 // Main Invitation Content
-export default function MainContent() {
+export default function MainContent({queryName}) {
     return (
         <>
-            <Hero />
+            <Hero queryName={queryName} />
             <Events />
             <Location />
             <Gifts />

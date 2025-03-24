@@ -1,6 +1,6 @@
 const config = {
   data: {
-    title: "Pernikahan Fahmi & Anggrie",
+    title: "Pernikahan Anggrie & Fahmi",
     description:
       "Kami akan menikah dan mengundang Anda untuk turut merayakan momen istimewa ini.",
     groomName: "Fahmi",
@@ -37,19 +37,19 @@ const config = {
     audio: {
       src: "/audio/fulfilling-humming.mp3",
       title: "Fulfilling Humming",
-      autoplay: true,
+      autoplay: false,
       loop: true
     },
     banks: [
       {
         bank: "Bank Central Asia",
-        accountNumber: "1234567890",
-        accountName: "Fahmi",
+        accountNumber: "5765322585",
+        accountName: "Fahmi Yuda Fauzi",
       },
       {
         bank: "Bank Central Asia",
-        accountNumber: "0987654321",
-        accountName: "Anggrie",
+        accountNumber: "6830723780",
+        accountName: "Anggrie Zulianie Putri",
       }
     ]
   }

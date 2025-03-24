@@ -37,7 +37,7 @@ Edit `src/config.js` to change details like the wedding title, names, and colors
 ```JavaScript
 const config = {
   data: {
-    title: "Pernikahan Fahmi & Anggrie",
+    title: "Pernikahan Anggrie & Fahmi",
     description:
       "Kami akan menikah dan mengundang Anda untuk turut merayakan momen istimewa ini.",
     groomName: "Fahmi",
@@ -74,8 +74,8 @@ const config = {
     audio: {
       src: "/audio/fulfilling-humming.mp3",
       title: "Fulfilling Humming",
-      autoplay: true,
-      loop: true
+      autoplay: false,
+      loop: false
     },
     banks: [
       {

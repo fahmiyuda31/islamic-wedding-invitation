@@ -12,18 +12,18 @@ import { useState, useEffect } from 'react';
 export default function Gifts() {
     const [copiedAccount, setCopiedAccount] = useState(null);
     const [hasAnimated, setHasAnimated] = useState(false);
-    
+
     // Set animation to run once on component mount
     useEffect(() => {
         setHasAnimated(true);
     }, []);
-    
+
     const copyToClipboard = (text, bank) => {
         navigator.clipboard.writeText(text);
         setCopiedAccount(bank);
         setTimeout(() => setCopiedAccount(null), 2000);
     };
-    
+
     return (<>
         <section id="gifts" className="min-h-screen relative overflow-hidden">
             <div className="container mx-auto px-4 py-20 relative z-10">
@@ -49,7 +49,7 @@ export default function Gifts() {
                         transition={{ delay: 0.3 }}
                         className="text-4xl md:text-5xl font-serif text-gray-800"
                     >
-                     Love Gift
+                        Love Gift
                     </motion.h2>
 
                     {/* Decorative Divider */}
@@ -73,7 +73,7 @@ export default function Gifts() {
                     >
                         {/* Main Message */}
                         <p className="text-gray-600 leading-relaxed">
-                        Dengan hormat, bagi Anda yang ingin memberikan tanda kasih kepada kami, dapat melalui:
+                            Dengan hormat, bagi Anda yang ingin memberikan tanda kasih kepada kami, dapat melalui:
                         </p>
 
                         {/* Arabic Dua */}
@@ -114,13 +114,17 @@ export default function Gifts() {
                             <div className="relative backdrop-blur-sm bg-white/80 p-6 rounded-2xl border border-amber-100/50 shadow-lg">
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center space-x-4">
-                                        <div className="w-12 h-12 rounded-lg bg-white p-2 shadow-sm">
-                                            {/* <Building2 className="w-full h-full text-amber-500" /> */}
-                                            Bank Central Asia
+                                        <div>
+                                            <img
+                                                src="bca.png"
+                                                width={100}
+                                                height={100}
+                                                alt="Bank Logo"
+                                            />
                                         </div>
                                         <div>
-                                            <h3 className="font-medium text-gray-800">{account.bank}</h3>
-                                            <p className="text-sm text-gray-500">{account.accountName}</p>
+                                            {/* <h3 className="font-medium text-gray-800">{account.bank}</h3> */}
+                                            <p className="text-medium text-gray-800">{account.accountName}</p>
                                         </div>
                                     </div>
                                     <Wallet className="w-5 h-5 text-amber-400" />

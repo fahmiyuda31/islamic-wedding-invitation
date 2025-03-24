@@ -5,9 +5,9 @@ import config from '@/config/config';
 import { formatEventDate } from '@/lib/formatEventDate';
 import { safeBase64 } from '@/lib/base64';
 
-export default function Hero() {
-    const [guestName, setGuestName] = useState('Rikza');
-
+export default function Hero(
+    { queryName }
+) {
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
         const guestParam = urlParams.get('guest');
@@ -140,7 +140,8 @@ export default function Hero() {
                             // className="text-3xl sm:text-5xl font-serif bg-clip-text text-transparent bg-gradient-to-r from-amber-600 to-pink-600"
                             className="text-3xl sm:text-5xl font-serif bg-clip-text text-transparent bg-gradient-to-r from-[#C58745] to-orange-600"
                         >
-                            {config.data.groomName} & {config.data.brideName}
+                            {/* {config.data.groomName} & {config.data.brideName} */}
+                            {config.data.brideName} & {config.data.groomName}
                         </motion.h2>
                     </div>
 
@@ -203,7 +204,7 @@ export default function Hero() {
                                         Bapak/Ibu/Saudara/i
                                     </p>
                                     <p className="text-orange-500 font-semibold text-lg">
-                                        {guestName ? guestName : "Tamu"}
+                                    {queryName ? queryName.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ') : "Tamu"}
                                     </p>
                                 </motion.div>
                             </div>

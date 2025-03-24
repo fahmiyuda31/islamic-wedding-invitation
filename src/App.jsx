@@ -22,6 +22,7 @@ import MainContent from '@/pages/MainContent';
 import LandingPage from '@/pages/LandingPage';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import config from '@/config/config';
+import { useLocation } from 'react-router-dom';
 
 /**
  * App component serves as the root of the application.
@@ -43,6 +44,10 @@ import config from '@/config/config';
  */
 function App() {
   const [isInvitationOpen, setIsInvitationOpen] = useState(false);
+  const queryString = window.location.search;
+  const queryParams = new URLSearchParams(queryString);
+  const queryName = queryParams.get('name');
+
   return (
     <HelmetProvider>
       <Helmet>
@@ -78,7 +83,7 @@ function App() {
           <LandingPage onOpenInvitation={() => setIsInvitationOpen(true)} />
         ) : (
           <Layout>
-            <MainContent />
+            <MainContent queryName={queryName} />
           </Layout>
         )}
       </AnimatePresence>
