@@ -36,6 +36,19 @@ export const formatEventDate = (isoString, format = 'full') => {
             minute: '2-digit',
             hour12: false,
             timeZone: 'Asia/Jakarta'
+        },
+        date: {
+            day: 'numeric',
+            month: 'long',
+            timeZone: 'Asia/Jakarta'
+        },
+        month: {
+            month: 'long',
+            timeZone: 'Asia/Jakarta'
+        },
+        year: {
+            year: 'numeric',
+            timeZone: 'Asia/Jakarta'
         }
     };
 
@@ -66,11 +79,11 @@ export const formatEventDate = (isoString, format = 'full') => {
         'Saturday': 'Sabtu'
     };
 
-    let formatted = date.toLocaleDateString('en-US', formats[format]);
+    let formatted = date.toLocaleDateString('en-ID', formats[format]);
 
     // Handle time format separately
     if (format === 'time') {
-        return date.toLocaleTimeString('en-US', formats[format]);
+        return date.toLocaleTimeString('en-ID', formats[format]);
     }
 
     // Replace English month and day names with Indonesian ones
