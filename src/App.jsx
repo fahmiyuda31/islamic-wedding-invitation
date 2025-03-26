@@ -1,52 +1,48 @@
-/**
- * Copyright (c) 2024-present mrofisr
- * 
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-// src/App.jsx
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import Layout from '@/components/Layout';
 import MainContent from '@/pages/MainContent';
 import LandingPage from '@/pages/LandingPage';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import config from '@/config/config';
-import { useLocation } from 'react-router-dom';
+import LoginPage from './pages/login';
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
+import Dashboard from './pages/admin/dashboard';
+import MainLayout from './pages/admin/layout';
+import Guest from './pages/admin/guest';
 
-/**
- * App component serves as the root of the application.
- *
- * It manages the state to determine whether the invitation content should be shown.
- * Initially, the invitation is closed and the LandingPage component is rendered.
- * Once triggered, the Layout component containing MainContent is displayed.
- *
- * This component also uses HelmetProvider and Helmet to set up various meta tags:
- *   - Primary meta tags: title and description.
- *   - Open Graph tags for Facebook.
- *   - Twitter meta tags for summary and large image preview.
- *   - Favicon link and additional meta tags for responsive design and theme color.
- *
- * @component
- * @example
- * // Renders the App component
- * <App />
- */
+
 function App() {
   const [isInvitationOpen, setIsInvitationOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const queryString = window.location.search;
   const queryParams = new URLSearchParams(queryString);
   const queryName = queryParams.get('name');
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCsOl6VumRQASa8-JeRuhyl9AnIh2cORCA",
+    authDomain: "weeding-invitation-ea6d3.firebaseapp.com",
+    projectId: "weeding-invitation-ea6d3",
+    storageBucket: "weeding-invitation-ea6d3.firebasestorage.app",
+    messagingSenderId: "93125841445",
+    appId: "1:93125841445:web:a04083afd1ab62738de5cc",
+    measurementId: "G-JB4LPFJTMY"
+  };
+  const app = initializeApp(firebaseConfig);
+  // const analytics = getAnalytics(app);
+  const db = getFirestore(app);
+  const auth = getAuth(app);
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem('user');
+
+    if (accessToken) {
+      setIsAuthenticated(true);
+    }
+  }, []);
 
   return (
     <HelmetProvider>
@@ -78,15 +74,63 @@ function App() {
         <meta name="theme-color" content="#FDA4AF" /> Rose-300 color
       </Helmet>
 
-      <AnimatePresence mode='wait'>
-        {!isInvitationOpen ? (
-          <LandingPage onOpenInvitation={() => setIsInvitationOpen(true)} />
-        ) : (
-          <Layout>
-            <MainContent queryName={queryName} />
-          </Layout>
-        )}
-      </AnimatePresence>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={
+            <AnimatePresence mode='wait'>
+              {!isInvitationOpen ? (
+                <LandingPage onOpenInvitation={() => setIsInvitationOpen(true)} />
+              ) : (
+                <Layout>
+                  <MainContent queryName={queryName} db={db} />
+                </Layout>
+              )}
+            </AnimatePresence>
+          } />
+
+          <Route path="/login" element={
+            <LoginPage
+              auth={auth}
+              signInWithEmailAndPassword={signInWithEmailAndPassword}
+            />
+          } />
+
+          <Route
+            path="/guest"
+            element={
+              isAuthenticated ? (
+                <>
+                  {/* <Dashboard /> */}
+                  <MainLayout db={db} />
+                </>
+              ) : (
+                <LoginPage
+                  auth={auth}
+                  signInWithEmailAndPassword={signInWithEmailAndPassword}
+                />
+              )
+            }
+          />
+
+
+          <Route
+            path="/admin"
+            element={
+              isAuthenticated ? (
+                <>
+                  {/* <Dashboard /> */}
+                  <MainLayout />
+                </>
+              ) : (
+                <LoginPage
+                  auth={auth}
+                  signInWithEmailAndPassword={signInWithEmailAndPassword}
+                />
+              )
+            }
+          />
+        </Routes>
+      </BrowserRouter>
     </HelmetProvider>
   );
 }

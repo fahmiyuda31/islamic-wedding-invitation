@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import Confetti from 'react-confetti';
 import Marquee from "@/components/ui/marquee";
+import _ from 'lodash';
 import {
     Calendar,
     Clock,
@@ -14,7 +15,6 @@ import {
     HelpCircle,
 } from 'lucide-react'
 import { useState, useEffect } from 'react';
-import { formatEventDate } from '@/lib/formatEventDate';
 import { collection, addDoc, getDocs } from 'firebase/firestore';
 import moment from 'moment';
 
@@ -36,42 +36,25 @@ export default function Wishes({
     ];
     // Example wishes - replace with your actual data
     const [wishes, setWishes] = useState([
-        // {
-        //     id: 1,
-        //     name: "John Doe",
-        //     message: "Wishing you both a lifetime of love, laughter, and happiness! 🎉",
-        //     timestamp: "2024-12-24T23:20:00Z",
-        //     attending: "attending"
-        // },
-        // {
-        //     id: 2,
-        //     name: "Natalie",
-        //     message: "Wishing you both a lifetime of love, laughter, and happiness! 🎉",
-        //     timestamp: "2024-12-24T23:20:00Z",
-        //     attending: "attending"
-        // },
-        // {
-        //     id: 3,
-        //     name: "Abdur Rofi",
-        //     message: "Congratulations on your special day! May Allah bless your union! 🤲",
-        //     timestamp: "2024-12-25T23:08:09Z",
-        //     attending: "maybe"
-        // }
     ]);
 
     const fetchWishes = async () => {
         const colRef = collection(db, 'wishes');
-        getDocs(colRef).then(querySnapshot => {
-            // setWishes(querySnapshot)
-            let data = []
-            querySnapshot.forEach(doc => {
-                data.push(doc.data())
+        getDocs(colRef).
+            then(querySnapshot => {
+                // setWishes(querySnapshot)
+                let data = []
+                querySnapshot.forEach(doc => {
+                    data.push(doc.data())
+                });
+                const sortedData = _.orderBy(data, 'timestamp', 'desc');
+                const limitedData = _.take(sortedData, 4);
+
+                console.log('limitedData', limitedData)
+                setWishes(limitedData)
+            }).catch(error => {
+                console.error('Error retrieving documents: ', error);
             });
-            console.log('data', data.length);
-            setWishes(data)
-        }).catch(error => {
-            console.error('Error retrieving documents: ', error);
-        });
     }
     useEffect(() => {
         fetchWishes()
