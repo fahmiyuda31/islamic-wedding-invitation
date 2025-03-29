@@ -16,7 +16,7 @@ const LoginPage = ({ auth, signInWithEmailAndPassword }) => {
                 // Signed in
                 const user = userCredential.user;
                 localStorage.setItem('user', user ? JSON.stringify(user) : null);
-                window.location.href = '/admin';
+                window.location.href = '/guest';
             })
             .catch((error) => {
                 setError(error.message);
