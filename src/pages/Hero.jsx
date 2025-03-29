@@ -233,7 +233,8 @@ export default function Hero(
                                                         value={queryName}
                                                         style={{ maxWidth: '100%', width: '100%' }}
                                                     />
-                                                    <p>Scan QR untuk ditukarkan dengan souvenir</p>
+                                                    <div style={{ height: 10 }}></div>
+                                                    <p>Tunjukan QR ini pada petugas, untuk ditukar dengan souvenir</p>
                                                 </div>
 
                                             </div>
