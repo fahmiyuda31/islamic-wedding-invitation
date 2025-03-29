@@ -25,7 +25,7 @@ const ScanQR = ({ db }) => {
                 if (doc.exists()) {
                     updateGuest(guestName);
                 } else {
-                    Modal.error({ content: 'Tamu tidak ditemukan' })
+                    Modal.error({ content: `Guest ${guestName} not found` })
                     console.log('Guest not found');
                 }
             });
@@ -54,6 +54,7 @@ const ScanQR = ({ db }) => {
                     onScan={(result) => handleScan(result)}
                     facingMode="user" // Show the front camera
                     resolution={1280} // Set the resolution to 1280x720
+                    continuousScan={true}
                     style={{ width: '100%', height: '100%', }} // Set the camera view to full screen
                 />
             </div>
