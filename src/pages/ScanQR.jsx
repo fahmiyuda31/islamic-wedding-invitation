@@ -1,6 +1,6 @@
 import { Scanner } from '@yudiel/react-qr-scanner';
 import { Modal } from 'antd';
-import { collection, doc, getDocs, serverTimestamp, updateDoc } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, serverTimestamp, updateDoc } from 'firebase/firestore';
 
 const ScanQR = ({ db }) => {
 
