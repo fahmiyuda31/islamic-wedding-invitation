@@ -30,9 +30,10 @@ const ScanQR = ({ db }) => {
 
     const handleScan = (result) => {
         // console.log('Scan result:', result);
-        alert(result)
-        if (result) {
-            findGuest(result)
+        const data = JSON.stringify(result);
+        alert(data)
+        if (data) {
+            findGuest(data)
         }
     }
     return (
@@ -41,8 +42,6 @@ const ScanQR = ({ db }) => {
             justifyContent: 'center',
             flexDirection: 'column',
             alignItems: 'center', 
-            height: '100vh',
-            width: '100%',
             background:'black'
         }}>
             
