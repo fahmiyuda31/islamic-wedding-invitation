@@ -82,12 +82,9 @@ const MainLayout = ({ db }) => {
                     <Breadcrumb.Item>App</Breadcrumb.Item>
                 </Breadcrumb> */}
                 <Layout
-                    style={{ padding: '24px 0', minHeight: 'calc(90vh - 64px)', background: colorBgContainer, borderRadius: borderRadiusLG }}
+                    style={{ padding: '24px 0', width: '100%', minHeight: 'calc(90vh - 64px)', background: colorBgContainer, borderRadius: borderRadiusLG }}
                 >
-                    <Sider >
-                        {/* <Button type="primary" onClick={toggleCollapsed} style={{ marginBottom: 16 }}>
-                            {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-                        </Button> */}
+                    {/* <Sider >
                         <Menu
                             mode="inline"
                             defaultSelectedKeys={[selectedKey]}
@@ -100,7 +97,7 @@ const MainLayout = ({ db }) => {
                                 minHeight: '100%',
                             }}
                         />
-                    </Sider>
+                    </Sider> */}
                     <Content style={{ padding: '0 24px', minHeight: 280 }}>
                         {pathname === '/guest' && <Guest db={db} />}
                         {/* {pathname === '/nav2' && <Nav2 />}
