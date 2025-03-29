@@ -101,6 +101,16 @@ const Guest = ({ db }) => {
         });
     };
 
+    const shareLink = async (dataGuest) => {
+        try {
+            const url = `https://weeding-anggrie-fahmi.vercel.app?name=${dataGuest?.name}`
+            const whatsappUrl = `whatsapp://send?text=${encodeURIComponent(url)}`
+            window.open(whatsappUrl, '_blank')
+        } catch (error) {
+            Modal.error({ content: 'Error sharing link' })
+        }
+    }
+
     const fetchGuest = async () => {
         setLoading(true)
         const colRef = collection(db, 'guest');
@@ -253,10 +263,10 @@ const Guest = ({ db }) => {
                                     <div style={{ height: 20 }}>
                                         Card Guest
                                     </div>
-                                    <p>Scan QR code to check in</p>
+                                    <p>Scan qr ini untuk ditukarkan dengan souvenir</p>
                                     <div style={{ height: 10 }}></div>
                                     <QRCode
-                                        value={dataGuest?.name + dataGuest?.address}
+                                        value={dataGuest?.name}
                                         viewBox={`0 0 256 256`}
                                         style={{ maxWidth: "100%", width: "100%" }}
                                     />
@@ -269,7 +279,10 @@ const Guest = ({ db }) => {
                             </div>
                             : null
                     }
-                    <Button type="primary" hidden={!dataGuest} style={{ width: '100%', fontSize: 20, padding: 20 }} onClick={() => downloadElement(dataGuest)}>Download Card</Button>
+                    <Button type="primary" hidden={!dataGuest} style={{ width: '100%', fontSize: 20, padding: 20 }} onClick={() => downloadElement(dataGuest)}>Download Kartu Penukaran Suvenir</Button>
+                    <div style={{ height: 20 }}></div>
+
+                    <Button type="primary" className='bg-green-800' hidden={!dataGuest} style={{ width: '100%', fontSize: 20, padding: 20 }} onClick={() => shareLink(dataGuest)}>Bagikan Undangan</Button>
                     <div style={{ height: 20 }}></div>
                     <Form.Item name={'name'} label="Name" required >
                         <Input placeholder="Enter guest name" />

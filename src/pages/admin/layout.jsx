@@ -43,7 +43,7 @@ const MainLayout = ({ db }) => {
     };
 
     return (
-        <Layout>
+        <Layout style={{ width: '100%' }}>
             <Header style={{ display: 'flex', alignItems: 'center' }}>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <p style={{ flex: 1, color: '#fff' }}>Weedig App</p>
@@ -82,7 +82,7 @@ const MainLayout = ({ db }) => {
                     <Breadcrumb.Item>App</Breadcrumb.Item>
                 </Breadcrumb> */}
                 <Layout
-                    style={{ padding: '24px 0', width: '100%', minHeight: 'calc(90vh - 64px)', background: colorBgContainer, borderRadius: borderRadiusLG }}
+                    style={{ padding: '24px 0', minHeight: 'calc(90vh - 64px)', background: colorBgContainer, borderRadius: borderRadiusLG }}
                 >
                     {/* <Sider >
                         <Menu

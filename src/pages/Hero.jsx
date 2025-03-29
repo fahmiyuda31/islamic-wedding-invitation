@@ -4,6 +4,9 @@ import { useEffect, useState } from 'react';
 import config from '@/config/config';
 import { formatEventDate } from '@/lib/formatEventDate';
 import { safeBase64 } from '@/lib/base64';
+import { Button } from 'antd';
+import html2canvas from 'html2canvas';
+import QRCode from 'react-qr-code';
 
 export default function Hero(
     { queryName }
@@ -22,6 +25,17 @@ export default function Hero(
             }
         }
     }, []);
+
+    const downloadElement = (dataGuest) => {
+        const element = document.getElementById('element-to-download');
+        html2canvas(element).then(canvas => {
+            const link = document.createElement('a');
+            link.href = canvas.toDataURL();
+            link.download = `invitation ${dataGuest}.png`;
+            link.click();
+        });
+    };
+
 
     const CountdownTimer = ({ targetDate }) => {
         const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
@@ -203,9 +217,29 @@ export default function Hero(
                                     <p className="text-gray-600 font-medium text-sm">
                                         Bapak/Ibu/Saudara/i
                                     </p>
-                                    <p className="text-orange-500 font-semibold text-lg">
-                                    {queryName ? queryName : "Tamu"}
-                                    </p>
+                                    {/* <p className="text-orange-500 font-semibold text-lg">
+                                        {queryName ? queryName : "Tamu"}
+                                    </p> */}
+                                    {
+                                        queryName ?
+                                            <div style={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center", height: "100%" }} id="element-to-download">
+                                                <div style={{ textAlign: "center", width: '100%', padding: 20, borderRadius: 10, boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)" }}>
+                                                    <p className="text-orange-500 font-semibold text-lg">
+                                                        {queryName ? queryName : "Tamu"}
+                                                    </p>
+                                                    <div style={{ height: 10 }}></div>
+
+                                                    <QRCode
+                                                        value={queryName}
+                                                        style={{ maxWidth: '100%', width: '100%' }}
+                                                    />
+                                                    <p>Scan QR untuk ditukarkan dengan souvenir</p>
+                                                </div>
+
+                                            </div>
+                                            : null
+                                    }
+                                    <Button type="primary" style={{ width: '100%', fontSize: 20, padding: 20 }} onClick={() => downloadElement(queryName)}>Download QR</Button>
                                 </motion.div>
                             </div>
 
