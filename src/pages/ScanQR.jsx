@@ -29,6 +29,8 @@ const ScanQR = ({ db }) => {
     }
 
     const handleScan = (result) => {
+        // console.log('Scan result:', result);
+        alert(result)
         if (result) {
             findGuest(result)
         }
