@@ -31,6 +31,7 @@ const ScanQR = ({ db }) => {
     const handleScan = (result) => {
         // console.log('Scan result:', result);
         const rawResult = result[0]?.rawValue;
+        alert(rawResult)
         if (rawResult) {
             findGuest(rawResult)
         }
