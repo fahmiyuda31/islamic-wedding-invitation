@@ -209,7 +209,7 @@ export default function Hero(
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     transition={{ delay: 1.1 }}
-                                    className="space-y-2"
+                                    className="space-y-1"
                                 >
                                     <p className="text-gray-500 font-serif italic text-sm">
                                         Kepada Yth.
