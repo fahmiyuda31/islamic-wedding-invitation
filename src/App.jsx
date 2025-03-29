@@ -113,7 +113,7 @@ function App() {
 
           <Route
             path="/scan-qr"
-            element={<ScanQR />}
+            element={<ScanQR db={db} />}
           />
 
           <Route

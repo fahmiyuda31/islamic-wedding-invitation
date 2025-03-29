@@ -1,14 +1,11 @@
-import { Button, Card, Col, Form, Input, Modal, Row, Table } from 'antd'
-import React, { useState, useEffect } from 'react'
-import { collection, addDoc, getDocs, updateDoc, doc, deleteDoc, serverTimestamp } from 'firebase/firestore';
+import { Button, Card, Col, Form, Input, Modal, Row, Table } from 'antd';
+import { addDoc, collection, deleteDoc, doc, getDocs, serverTimestamp, updateDoc } from 'firebase/firestore';
+import { useEffect, useState } from 'react';
 // import { readExcel } from 'read-excel-file';
-import _, { set } from 'lodash'
-import moment from 'moment';
-import ReactDOM, { render } from "react-dom";
 import html2canvas from 'html2canvas';
+import _ from 'lodash';
+import moment from 'moment';
 import QRCode from "react-qr-code";
-import * as Excel from 'exceljs';
-import { data } from 'react-router-dom';
 const Guest = ({ db }) => {
     const [listData, setListData] = useState([
     ]);
