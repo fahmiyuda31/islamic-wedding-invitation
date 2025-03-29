@@ -30,10 +30,9 @@ const ScanQR = ({ db }) => {
 
     const handleScan = (result) => {
         // console.log('Scan result:', result);
-        const data = JSON.stringify(result);
-        alert(data)
-        if (data) {
-            findGuest(data)
+        const rawResult = result[0]?.rawValue;
+        if (rawResult) {
+            findGuest(rawResult)
         }
     }
     return (
@@ -42,7 +41,6 @@ const ScanQR = ({ db }) => {
             justifyContent: 'center',
             flexDirection: 'column',
             alignItems: 'center', 
-            background:'black'
         }}>
             
             <p className='p-4 text-center text-white font-bold text-2xl'>Silahkan Scan QR Code Tamu</p>
@@ -50,7 +48,7 @@ const ScanQR = ({ db }) => {
                 onScan={(result) => handleScan(result)}
                 facingMode="user" // Show the front camera
                 resolution={1280} // Set the resolution to 1280x720
-                style={{ width: '100%', height: '100%' }} // Set the camera view to full screen
+                style={{ width: '100%', height: '100%',  }} // Set the camera view to full screen
             />
         </div>
     )
