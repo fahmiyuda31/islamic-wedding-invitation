@@ -20,41 +20,44 @@ const ScanQR = ({ db }) => {
     const findGuest = (guestName) => {
         const colRef = collection(db, 'guest');
         const docRef = doc(colRef, guestName);
-        getDoc(docRef).then(doc => {
-            if (doc.exists()) {
-                updateGuest(guestName);
-            } else {
-                Modal.error({ content: 'Tamu tidak ditemukan' })
-                console.log('Guest not found');
-            }
-        });
-    }
-
-    const handleScan = (result) => {
-        // console.log('Scan result:', result);
-        const rawResult = result[0]?.rawValue;
-        // alert(rawResult)
-        if (rawResult) {
-            findGuest(rawResult)
+        try {
+            getDoc(docRef).then(doc => {
+                if (doc.exists()) {
+                    updateGuest(guestName);
+                } else {
+                    Modal.error({ content: 'Tamu tidak ditemukan' })
+                    console.log('Guest not found');
+                }
+            });
+        } catch (error) {
+            alert(`${error}`)
         }
+
+        const handleScan = (result) => {
+            // console.log('Scan result:', result);
+            const rawResult = result[0]?.rawValue;
+            alert(rawResult)
+            if (rawResult) {
+                findGuest(rawResult)
+            }
+        }
+        return (
+            <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                flexDirection: 'column',
+                alignItems: 'center',
+            }}>
+
+                <p className='p-4 text-center font-bold text-2xl'>Silahkan Scan QR Code Tamu</p>
+                <Scanner
+                    onScan={(result) => handleScan(result)}
+                    facingMode="user" // Show the front camera
+                    resolution={1280} // Set the resolution to 1280x720
+                    style={{ width: '100%', height: '100%', }} // Set the camera view to full screen
+                />
+            </div>
+        )
     }
-    return (
-        <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            flexDirection: 'column',
-            alignItems: 'center',
-        }}>
 
-            <p className='p-4 text-center font-bold text-2xl'>Silahkan Scan QR Code Tamu</p>
-            <Scanner
-                onScan={(result) => handleScan(result)}
-                facingMode="user" // Show the front camera
-                resolution={1280} // Set the resolution to 1280x720
-                style={{ width: '100%', height: '100%', }} // Set the camera view to full screen
-            />
-        </div>
-    )
-}
-
-export default ScanQR
+    export default ScanQR
