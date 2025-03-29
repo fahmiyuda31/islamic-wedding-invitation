@@ -103,7 +103,8 @@ const Guest = ({ db }) => {
 
     const shareLink = async (dataGuest) => {
         try {
-            const url = `https://weeding-anggrie-fahmi.vercel.app?name=${dataGuest?.name}`
+            const url = `https://weeding-anggrie-fahmi.vercel.app?name=${encodeURIComponent(dataGuest?.name)}`
+            console.log(url);
             const whatsappUrl = `whatsapp://send?text=${encodeURIComponent(url)}`
             window.open(whatsappUrl, '_blank')
         } catch (error) {

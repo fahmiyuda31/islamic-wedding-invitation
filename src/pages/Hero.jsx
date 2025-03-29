@@ -199,11 +199,11 @@ export default function Hero(
                                     </motion.div>
                                 </div>
 
-                                <div className="flex items-center justify-center gap-3">
+                                {/* <div className="flex items-center justify-center gap-3">
                                     <div className="h-px w-8 sm:w-12 bg-[#C58745]" />
                                     <div className="w-2 h-2 rounded-full bg-[#C58745]" />
                                     <div className="h-px w-8 sm:w-12 bg-[#C58745]" />
-                                </div>
+                                </div> */}
 
                                 <motion.div
                                     initial={{ opacity: 0 }}
