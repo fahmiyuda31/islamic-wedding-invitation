@@ -1,5 +1,5 @@
-import React from 'react';
-import Icon, { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
+import React, { useState } from 'react';
+import Icon, { LaptopOutlined, MenuFoldOutlined, MenuUnfoldOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
 import { Breadcrumb, Button, Layout, Menu, Modal, theme } from 'antd';
 import Guest from './guest';
 const { Header, Content, Footer, Sider } = Layout;
@@ -36,6 +36,11 @@ const MainLayout = ({ db }) => {
         window.location.href = selectedKey.path;
     };
 
+    const [collapsed, setCollapsed] = useState(false);
+    const toggleCollapsed = () => {
+        setCollapsed(!collapsed);
+    };
+
     return (
         <Layout>
             <Header style={{ display: 'flex', alignItems: 'center' }}>
@@ -70,22 +75,29 @@ const MainLayout = ({ db }) => {
                 </Button>
             </Header>
             <div style={{ padding: '0 48px' }}>
-                <Breadcrumb style={{ margin: '16px 0' }}>
+                {/* <Breadcrumb style={{ margin: '16px 0' }}>
                     <Breadcrumb.Item>Home</Breadcrumb.Item>
                     <Breadcrumb.Item>List</Breadcrumb.Item>
                     <Breadcrumb.Item>App</Breadcrumb.Item>
-                </Breadcrumb>
+                </Breadcrumb> */}
                 <Layout
-                    style={{ padding: '24px 0', background: colorBgContainer, borderRadius: borderRadiusLG }}
+                    style={{ padding: '24px 0', minHeight: 'calc(90vh - 64px)', background: colorBgContainer, borderRadius: borderRadiusLG }}
                 >
-                    <Sider style={{ background: colorBgContainer }} width={200}>
+                    <Sider >
+                        {/* <Button type="primary" onClick={toggleCollapsed} style={{ marginBottom: 16 }}>
+                            {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+                        </Button> */}
                         <Menu
                             mode="inline"
                             defaultSelectedKeys={[selectedKey]}
                             defaultOpenKeys={['sub1']}
-                            style={{ height: '100%' }}
+                            inlineCollapsed={collapsed}
                             items={listMenu}
                             onClick={handleClickMenu}
+                            // theme="dark"
+                            style={{
+                                minHeight: '100%',
+                            }}
                         />
                     </Sider>
                     <Content style={{ padding: '0 24px', minHeight: 280 }}>
@@ -96,7 +108,7 @@ const MainLayout = ({ db }) => {
                 </Layout>
             </div>
             <Footer style={{ textAlign: 'center' }}>
-                Ant Design {new Date().getFullYear()} Created by Ant UED
+                Weeding Inviatio Anggrie & Fahmi - April 2025
             </Footer>
         </Layout>
     );

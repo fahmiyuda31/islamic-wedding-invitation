@@ -1,18 +1,17 @@
-import { useState, useEffect } from 'react';
-import { AnimatePresence } from 'framer-motion';
 import Layout from '@/components/Layout';
-import MainContent from '@/pages/MainContent';
+import config from '@/config/config';
 import LandingPage from '@/pages/LandingPage';
+import MainContent from '@/pages/MainContent';
+import { initializeApp } from "firebase/app";
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { getFirestore } from "firebase/firestore";
+import { AnimatePresence } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import config from '@/config/config';
-import LoginPage from './pages/login';
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
-import Dashboard from './pages/admin/dashboard';
 import MainLayout from './pages/admin/layout';
-import Guest from './pages/admin/guest';
+import LoginPage from './pages/login';
+import ScanQR from './pages/ScanQR';
 
 
 function App() {
@@ -112,6 +111,10 @@ function App() {
             }
           />
 
+          <Route
+            path="/scan-qr"
+            element={<ScanQR />}
+          />
 
           <Route
             path="/admin"

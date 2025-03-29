@@ -6,9 +6,11 @@ const LoginPage = ({ auth, signInWithEmailAndPassword }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        setLoading(true)
         signInWithEmailAndPassword(auth, username, password)
             .then((userCredential) => {
                 // Signed in
@@ -18,7 +20,8 @@ const LoginPage = ({ auth, signInWithEmailAndPassword }) => {
             })
             .catch((error) => {
                 setError(error.message);
-            });
+            })
+            .finally(() => setLoading(false));
     };
 
     return (
@@ -50,8 +53,9 @@ const LoginPage = ({ auth, signInWithEmailAndPassword }) => {
                     <button
                         className="w-full p-2 text-lg font-medium text-white bg-amber-600 rounded-lg hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-amber-600"
                         type="submit"
+                        disabled={loading}
                     >
-                        Login
+                       {loading ? 'Loading...' : 'Login'} 
                     </button>
                 </form>
             </div>
