@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import config from '@/config/config';
 import Icon, { LaptopOutlined, MenuFoldOutlined, MenuUnfoldOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
 import { Breadcrumb, Button, Layout, Menu, Modal, theme } from 'antd';
 import Guest from './guest';
@@ -108,7 +109,7 @@ const MainLayout = ({ db }) => {
                 </Layout>
             </div>
             <Footer style={{ textAlign: 'center' }}>
-                Weeding Inviatio Anggrie & Fahmi - April 2025
+                Weeding Inviatio {config.data.brideName} & {config.data.groomName} - April 2025
             </Footer>
         </Layout>
     );
