@@ -16,12 +16,12 @@ const ScanQR = ({ db }) => {
             Modal.error({ content: 'Error updating guest' })
         });
     }
+
     const findGuest = (guestName) => {
         const colRef = collection(db, 'guest');
         const docRef = doc(colRef, guestName);
-        getDocs(docRef).then().then((doc) => {
-            if (doc.exists) {
-                // console.log('Guest found:', doc.data());
+        getDoc(docRef).then(doc => {
+            if (doc.exists()) {
                 updateGuest(guestName);
             } else {
                 Modal.error({ content: 'Tamu tidak ditemukan' })
