@@ -1,6 +1,6 @@
 import { Scanner } from '@yudiel/react-qr-scanner';
 import { Modal } from 'antd';
-import { collection, doc, getDoc, getDocs, serverTimestamp, updateDoc } from 'firebase/firestore';
+import { collection, doc, getDoc, serverTimestamp, updateDoc } from 'firebase/firestore';
 
 const ScanQR = ({ db }) => {
     const updateGuest = (guestName) => {
@@ -21,7 +21,13 @@ const ScanQR = ({ db }) => {
         try {
             getDoc(docRef).then(doc => {
                 if (doc.exists()) {
-                    updateGuest(guestName);
+                    const guestData = doc.data();
+                    if (guestData.name === guestName) {
+                        updateGuest(guestName);
+                    } else {
+                        Modal.error({ content: `Guest ${guestName} not found` })
+                        console.log('Guest not found');
+                    }
                 } else {
                     Modal.error({ content: `Guest ${guestName} not found` })
                     console.log('Guest not found');
