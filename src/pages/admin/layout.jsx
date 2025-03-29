@@ -109,7 +109,7 @@ const MainLayout = ({ db }) => {
                 </Layout>
             </div>
             <Footer style={{ textAlign: 'center' }}>
-                Weeding Inviatio {config.data.brideName} & {config.data.groomName} - April 2025
+                Weeding Inviatio {config.data.brideName} & {config.data.groomName} - {config.data.date}
             </Footer>
         </Layout>
     );
