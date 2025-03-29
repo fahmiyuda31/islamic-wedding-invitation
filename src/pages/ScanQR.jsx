@@ -19,7 +19,7 @@ const ScanQR = ({ db }) => {
                     document.querySelector('input').value = '';
 
                 }).catch(error => {
-                    Modal.error({ content: `Error updating guest ${error}` })
+                    // Modal.error({ content: `Error updating guest ${error}` })
                 });
             } else {
                 Modal.error({ content: `Guest ${guestName} not found` })
