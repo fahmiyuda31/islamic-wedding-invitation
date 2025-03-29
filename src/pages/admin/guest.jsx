@@ -8,6 +8,7 @@ import ReactDOM, { render } from "react-dom";
 import html2canvas from 'html2canvas';
 import QRCode from "react-qr-code";
 import * as Excel from 'exceljs';
+import { data } from 'react-router-dom';
 const Guest = ({ db }) => {
     const [listData, setListData] = useState([
     ]);
@@ -90,12 +91,12 @@ const Guest = ({ db }) => {
                 Modal.error({ content: 'Error deleting guest' })
             })
     }
-    const downloadElement = () => {
+    const downloadElement = (dataGuest) => {
         const element = document.getElementById('element-to-download');
         html2canvas(element).then(canvas => {
             const link = document.createElement('a');
             link.href = canvas.toDataURL();
-            link.download = 'guest-card.png'; theme = "dark"
+            link.download = `invitation ${dataGuest?.name}.png`;
             link.click();
         });
     };
@@ -268,7 +269,7 @@ const Guest = ({ db }) => {
                             </div>
                             : null
                     }
-                    <Button type="primary" hidden={!dataGuest} style={{ width: '100%', fontSize: 20, padding: 20 }} onClick={() => downloadElement()}>Download Card</Button>
+                    <Button type="primary" hidden={!dataGuest} style={{ width: '100%', fontSize: 20, padding: 20 }} onClick={() => downloadElement(dataGuest)}>Download Card</Button>
                     <div style={{ height: 20 }}></div>
                     <Form.Item name={'name'} label="Name" required >
                         <Input placeholder="Enter guest name" />
