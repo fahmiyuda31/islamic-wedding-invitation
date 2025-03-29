@@ -44,7 +44,6 @@ const ScanQR = ({ db }) => {
             background:'black'
         }}>
             
-            <div style={{ height:20 }}></div>
             <p className='p-4 text-center text-white font-bold text-2xl'>Silahkan Scan QR Code Tamu</p>
             <Scanner
                 onScan={(result) => handleScan(result)}
