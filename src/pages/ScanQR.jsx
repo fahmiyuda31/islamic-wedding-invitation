@@ -43,7 +43,7 @@ const ScanQR = ({ db }) => {
             alignItems: 'center', 
         }}>
             
-            <p className='p-4 text-center text-white font-bold text-2xl'>Silahkan Scan QR Code Tamu</p>
+            <p className='p-4 text-center font-bold text-2xl'>Silahkan Scan QR Code Tamu</p>
             <Scanner
                 onScan={(result) => handleScan(result)}
                 facingMode="user" // Show the front camera
