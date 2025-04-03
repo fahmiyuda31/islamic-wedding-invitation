@@ -1,10 +1,11 @@
 import { Scanner } from '@yudiel/react-qr-scanner';
 import { Button, Modal, Tabs } from 'antd';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { collection, getDocs, query, serverTimestamp, updateDoc, where } from 'firebase/firestore';
 
 const ScanQR = ({ db }) => {
     const [loading, setLoading] = useState(false);
+    const searchInput = useRef(null);
 
     const findGuest = (guestName) => {
         const colRef = collection(db, 'guest');
@@ -17,6 +18,7 @@ const ScanQR = ({ db }) => {
                 updateDoc(guestDoc.ref, { check_in }).then(() => {
                     Modal.success({ content: `Selamat datang ${guestName}, terima kasih telah hadir` })
                     document.querySelector('input').value = '';
+                    document.querySelector('input').focus();
 
                 }).catch(error => {
                     // Modal.error({ content: `Error updating guest ${error}` })
@@ -37,6 +39,9 @@ const ScanQR = ({ db }) => {
         }
     }
 
+    useEffect(() => {
+    }, [])
+
     return (
         <div style={{
             display: 'flex',
@@ -53,6 +58,7 @@ const ScanQR = ({ db }) => {
                     width: '100%',
                     padding: '2rem'
                 }}
+
                 items={[
                     {
                         label: 'Scan QR',
@@ -74,7 +80,21 @@ const ScanQR = ({ db }) => {
                         key: '2',
                         children: <div>
                             <p className='p-4 text-center font-bold text-2xl'>Input Nama Tamu</p>
-                            <input type="text" placeholder='Nama Tamu' className='p-4 text-center font-bold text-xl w-full border border-gray-300' />
+                            <input
+                                ref={searchInput}
+                                type="text"
+                                placeholder='Nama Tamu'
+                                className='p-4 text-center font-bold text-xl w-full border border-gray-300'
+                                autoFocus={true}
+                                autoComplete='on'
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter') {
+                                        findGuest(e.target.value);
+                                        searchInput.current.value = '';
+                                        searchInput.current.focus();
+                                    }
+                                }}
+                            />
 
                             <div style={{ height: '2rem' }}></div>
                             <Button
