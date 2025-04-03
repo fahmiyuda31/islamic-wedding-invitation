@@ -1,6 +1,7 @@
 import { Button, Card, Col, Form, Input, Modal, Row, Table } from 'antd';
 import { addDoc, collection, deleteDoc, doc, getDocs, query, serverTimestamp, updateDoc, where } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
+import { SearchOutlined } from '@ant-design/icons';
 // import { readExcel } from 'read-excel-file';
 import html2canvas from 'html2canvas';
 import _ from 'lodash';
@@ -35,25 +36,50 @@ const Guest = ({ db }) => {
             width: 500,
             filterSearch: true,
             sorter: {
-                compare: (a, b) => a.name - b.name,
+                compare: (a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()),
                 multiple: 1,
             },
-            onFilter: (value, record) => record.name.startsWith(value),
+            filterDropdown: ({ setSelectedKeys, selectedKeys, confirm }) => (
+                <Input
+                    value={selectedKeys[0]}
+                    onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+                    onPressEnter={() => confirm()}
+                    style={{ width: 200 }}
+                />
+            ),
+            filterIcon: (filtered) => (
+                <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />
+            ),
+            onFilter: (value, record) => record.name.toLowerCase().includes(value.toLowerCase()),
+
         },
         {
             title: 'Address',
             dataIndex: 'address',
+            key: 'address',
             sorter: {
-                compare: (a, b) => a.address - b.address,
+                compare: (a, b) => a.address.localeCompare(b.address),
                 multiple: 2,
             },
-            key: 'address',
+            filterDropdown: ({ setSelectedKeys, selectedKeys, confirm }) => (
+                <Input
+                    value={selectedKeys[0]}
+                    onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+                    onPressEnter={() => confirm()}
+                    style={{ width: 200 }}
+                />
+            ),
+            filterIcon: (filtered) => (
+                <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />
+            ),
+            onFilter: (value, record) => record.address.toLowerCase().includes(value.toLowerCase()),
+
         },
         {
             title: 'Attend At',
             dataIndex: 'date_in',
             sorter: {
-                compare: (a, b) => a.date_in - b.date_in,
+                compare: (a, b) => a.date_in.localeCompare(b.date_in),
                 multiple: 3,
             },
             key: 'date_in',
@@ -198,7 +224,6 @@ const Guest = ({ db }) => {
                 const sheetName = workbook.SheetNames[0];
                 const worksheet = workbook.Sheets[sheetName];
                 const json = xlsx.utils.sheet_to_json(worksheet);
-                console.log(json);
 
                 // Add data to Firestore
                 try {
@@ -207,7 +232,7 @@ const Guest = ({ db }) => {
                         const guestQuery = query(colRef, where('name', '==', row?.name));
                         await getDocs(guestQuery).then(async (querySnapshot) => {
                             if (querySnapshot.docs.length > 0) {
-                                console.log(`Guest with name ${row.name} already exists, skipping...`);
+                                // console.log(`Guest with name ${row.name} already exists, skipping...`);
                             } else {
                                 const createdAt = serverTimestamp();
                                 await addDoc(colRef, { ...row, createdAt }).then(docRef => {
