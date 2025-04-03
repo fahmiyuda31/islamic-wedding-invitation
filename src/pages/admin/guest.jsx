@@ -96,7 +96,7 @@ const Guest = ({ db }) => {
             title: '',
             render: (text, record) => {
                 console.log(record);
-                
+
                 return (
                     <div>
                         <Button type="primary" className='bg-green-800 mr-2' hidden={!record} onClick={() => shareLink(record)}>Share</Button>
@@ -150,7 +150,22 @@ const Guest = ({ db }) => {
         try {
             const url = `https://weeding-anggrie-fahmi.vercel.app?name=${encodeURIComponent(dataGuest?.name)}`
             console.log(url);
-            const whatsappUrl = `whatsapp://send?text=${encodeURIComponent(url)}`
+            const text = `
+            Kepada Yth
+                ${encodeURIComponent(dataGuest?.name)}.
+
+                Assalamu'alaikum Wr. Wb.
+
+                Tanpa mengurangi rasa hormat, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk hadir pada acara pernikahan kami.
+                Undangan dapat diakses melalui link berikut.
+               ${encodeURIComponent(url)}\n
+                Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu pada pernikahan kami.
+                Atas kehadirannya kami ucapkan terima kasih.
+
+                Wassalamu'alaikum Wr. Wb.
+
+                Fahmi Yuda, S.Kom.`
+            const whatsappUrl = `whatsapp://send?text=${encodeURIComponent(text)}`
             window.open(whatsappUrl, '_blank')
         } catch (error) {
             Modal.error({ content: 'Error sharing link' })
