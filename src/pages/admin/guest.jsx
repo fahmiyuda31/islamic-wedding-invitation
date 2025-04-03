@@ -33,7 +33,7 @@ const Guest = ({ db }) => {
             title: 'Name',
             dataIndex: 'name',
             key: 'name',
-            width: 500,
+            width: 300,
             filterSearch: true,
             sorter: {
                 compare: (a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()),
@@ -57,6 +57,8 @@ const Guest = ({ db }) => {
             title: 'Address',
             dataIndex: 'address',
             key: 'address',
+            width: 500,
+
             sorter: {
                 compare: (a, b) => a.address.localeCompare(b.address),
                 multiple: 2,
@@ -78,6 +80,7 @@ const Guest = ({ db }) => {
         {
             title: 'Attend At',
             dataIndex: 'date_in',
+            width: 200,
             sorter: {
                 compare: (a, b) => a.date_in.localeCompare(b.date_in),
                 multiple: 3,
@@ -90,10 +93,11 @@ const Guest = ({ db }) => {
         //     key: 'phone',
         // },
         {
-            title: 'Detail',
+            title: '',
             render: (text, record) => {
                 return (
                     <div>
+                        <Button type="primary" className='bg-green-800 mr-2' hidden={!record?.name} onClick={() => shareLink(record?.name)}>Share</Button>
                         {/* <QRCode value={JSON.stringify(record.name)} /> */}
                         <Button type="primary" className='mr-2' onClick={() => {
                             setDataGuest(record)
@@ -381,7 +385,7 @@ const Guest = ({ db }) => {
                     <Button type="primary" hidden={!dataGuest} style={{ width: '100%', fontSize: 20, padding: 20 }} onClick={() => downloadElement(dataGuest)}>Download Kartu Penukaran Suvenir</Button>
                     <div style={{ height: 20 }}></div>
 
-                    <Button type="primary" className='bg-green-800' hidden={!dataGuest} style={{ width: '100%', fontSize: 20, padding: 20 }} onClick={() => shareLink(dataGuest)}>Bagikan Undangan</Button>
+
                     <div style={{ height: 20 }}></div>
                     <Form.Item name={'name'} label="Name" required >
                         <Input placeholder="Enter guest name" />
