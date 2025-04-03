@@ -95,9 +95,11 @@ const Guest = ({ db }) => {
         {
             title: '',
             render: (text, record) => {
+                console.log(record);
+                
                 return (
                     <div>
-                        <Button type="primary" className='bg-green-800 mr-2' hidden={!record?.name} onClick={() => shareLink(record?.name)}>Share</Button>
+                        <Button type="primary" className='bg-green-800 mr-2' hidden={!record} onClick={() => shareLink(record)}>Share</Button>
                         {/* <QRCode value={JSON.stringify(record.name)} /> */}
                         <Button type="primary" className='mr-2' onClick={() => {
                             setDataGuest(record)
