@@ -151,14 +151,14 @@ const Guest = ({ db }) => {
             const url = `https://weeding-anggrie-fahmi.vercel.app?name=${encodeURIComponent(dataGuest?.name)}`
             console.log(url);
             const text = `
-            Kepada Yth ${dataGuest?.name}.
+           Kepada Yth ${dataGuest?.name}.
 
             Assalamu'alaikum Wr. Wb.
 
             Tanpa mengurangi rasa hormat, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk hadir pada acara pernikahan kami.
 
             Undangan dapat diakses melalui link berikut:
-            ${encodeURIComponent(url)}
+            ${url}
 
             Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu pada pernikahan kami.
 
