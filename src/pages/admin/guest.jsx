@@ -161,7 +161,7 @@ const Guest = ({ db }) => {
                 querySnapshot.forEach(doc => {
                     data.push({ ...doc.data(), id: doc.id });
                 });
-                const sortedData = _.orderBy(data, ['name', 'address'], 'asc');
+                const sortedData = _.orderBy(data, ['address', 'name'], 'desc');
 
                 const newData = sortedData.map((item, index) => ({
                     ...item, key: item.id,
