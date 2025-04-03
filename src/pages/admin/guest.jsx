@@ -150,8 +150,9 @@ const Guest = ({ db }) => {
         try {
             const url = `https://weeding-anggrie-fahmi.vercel.app?name=${encodeURIComponent(dataGuest?.name)}`
             console.log(url);
-            const text = `
-           Kepada Yth ${dataGuest?.name}.
+            const text =
+                `
+            Kepada Yth ${dataGuest?.name}.
 
             Assalamu'alaikum Wr. Wb.
 

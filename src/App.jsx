@@ -76,14 +76,19 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={
+            // <AnimatePresence mode='wait'>
+            //   {!isInvitationOpen ? (
+            //     <LandingPage onOpenInvitation={() => setIsInvitationOpen(true)} />
+            //   ) : (
+            //     <Layout>
+            //       <MainContent queryName={queryName} db={db} />
+            //     </Layout>
+            //   )}
+            // </AnimatePresence>
             <AnimatePresence mode='wait'>
-              {!isInvitationOpen ? (
-                <LandingPage onOpenInvitation={() => setIsInvitationOpen(true)} />
-              ) : (
-                <Layout>
-                  <MainContent queryName={queryName} db={db} />
-                </Layout>
-              )}
+              <Layout>
+                <MainContent queryName={queryName} db={db} />
+              </Layout>
             </AnimatePresence>
           } />
 
