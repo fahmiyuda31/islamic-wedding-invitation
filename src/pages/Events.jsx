@@ -23,7 +23,7 @@ export default function Events() {
                         transition={{ duration: 0.8 }}
                         className="text-center space-y-4 mb-16"
                     >
-                        <motion.span
+                        {/* <motion.span
                             initial={{ opacity: 0, y: 10 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
@@ -31,7 +31,7 @@ export default function Events() {
                             className="inline-block text-amber-500 font-medium mb-2"
                         >
                             Catat Tanggal Penting Ini
-                        </motion.span>
+                        </motion.span> */}
 
                         <motion.h2
                             initial={{ opacity: 0, y: 20 }}

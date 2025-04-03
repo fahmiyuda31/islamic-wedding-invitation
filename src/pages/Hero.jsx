@@ -121,34 +121,15 @@ export default function Hero(
 
     return (
         <>
-            <section id="home" className="min-h-screen flex flex-col items-center justify-center px-4 py-16 sm:py-20 text-center relative overflow-hidden">
+            <section id="home" className="min-h-screen flex flex-col items-center justify-center px-4 py-16 sm:py-10 text-center relative overflow-hidden">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                     className="space-y-6 relative z-10"
                 >
-                    <motion.div
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ delay: 0.2 }}
-                        className="inline-block mx-auto"
 
-                    >
-                        {/* <span className="px-4 py-1 text-sm bg-amber-50 text-amber-600 rounded-full border border-amber-200"> */}
-                        <span
-                            onClick={() => {
-                                // Membuka Google Kalender dengan tanggal tertentu
-                                const tanggal = new Date(config?.data?.date);
-                                const url = `https://calendar.google.com/calendar/u/0/r/day/${tanggal.getFullYear()}/${tanggal.getMonth() + 1}/${tanggal.getDate()}`;
-                                window.open(url, '_blank');
-                            }}
-                            style={{ cursor: 'pointer' }}
-                            className="px-4 py-1 text-sm font-bold bg-orange-600 text-white rounded-full border ">Catat Tanggal Penting Ini
-                        </span>
-                    </motion.div>
-
-                    <div className="space-y-4">
+                    <div className="space-y-2">
                         <motion.p
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
@@ -182,8 +163,28 @@ export default function Hero(
                                 <div className="w-20 sm:w-32 h-[2px] bg-gradient-to-r from-transparent via-[#C58745]-200 to-transparent" />
                             </div>
 
-                            <div className="space-y-6 text-center">
+                            <div className="space-y-1 text-center">
                                 <div className="space-y-3">
+                                    <motion.div
+                                        initial={{ scale: 0 }}
+                                        animate={{ scale: 1 }}
+                                        transition={{ delay: 0.2 }}
+                                        className="inline-block mx-auto"
+
+                                    >
+                                        {/* <span className="px-4 py-1 text-sm bg-amber-50 text-amber-600 rounded-full border border-amber-200"> */}
+                                        <span
+                                            onClick={() => {
+                                                // Membuka Google Kalender dengan tanggal tertentu
+                                                const tanggal = new Date(config?.data?.date);
+                                                const url = `https://calendar.google.com/calendar/u/0/r/day/${tanggal.getFullYear()}/${tanggal.getMonth() + 1}/${tanggal.getDate()}`;
+                                                window.open(url, '_blank');
+                                            }}
+                                            style={{ cursor: 'pointer' }}
+                                            className="px-4 py-1 text-sm font-bold bg-orange-600 text-white rounded-full border ">Catat Tanggal
+                                        </span>
+                                    </motion.div>
+
                                     <motion.div
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: 1 }}
