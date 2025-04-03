@@ -7,6 +7,7 @@ import { safeBase64 } from '@/lib/base64';
 import { Button } from 'antd';
 import html2canvas from 'html2canvas';
 import QRCode from 'react-qr-code';
+import moment from 'moment';
 
 export default function Hero(
     { queryName }
@@ -132,9 +133,18 @@ export default function Hero(
                         animate={{ scale: 1 }}
                         transition={{ delay: 0.2 }}
                         className="inline-block mx-auto"
+
                     >
                         {/* <span className="px-4 py-1 text-sm bg-amber-50 text-amber-600 rounded-full border border-amber-200"> */}
-                        <span className="px-4 py-1 text-sm font-bold bg-white-50 text-[#C58745] rounded-full border border-[#C58745]">Catat Tanggal Penting Ini
+                        <span
+                            onClick={() => {
+                                // Membuka Google Kalender dengan tanggal tertentu
+                                const tanggal = new Date(config?.data?.date);
+                                const url = `https://calendar.google.com/calendar/u/0/r/day/${tanggal.getFullYear()}/${tanggal.getMonth() + 1}/${tanggal.getDate()}`;
+                                window.open(url, '_blank');
+                            }}
+                            style={{ cursor: 'pointer' }}
+                            className="px-4 py-1 text-sm font-bold bg-orange-600 text-white rounded-full border ">Catat Tanggal Penting Ini
                         </span>
                     </motion.div>
 
