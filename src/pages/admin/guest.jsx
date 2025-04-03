@@ -1,10 +1,11 @@
 import { Button, Card, Col, Form, Input, Modal, Row, Table } from 'antd';
-import { addDoc, collection, deleteDoc, doc, getDocs, serverTimestamp, updateDoc } from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, doc, getDocs, query, serverTimestamp, updateDoc, where } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 // import { readExcel } from 'read-excel-file';
 import html2canvas from 'html2canvas';
 import _ from 'lodash';
 import moment from 'moment';
+import * as xlsx from "xlsx";
 import QRCode from "react-qr-code";
 const Guest = ({ db }) => {
     const [listData, setListData] = useState([
@@ -22,31 +23,46 @@ const Guest = ({ db }) => {
 
     const columns = [
         {
+            title: 'No',
+            dataIndex: 'no',
+            key: 'no',
+            width: 100
+        },
+        {
             title: 'Name',
             dataIndex: 'name',
             key: 'name',
-
-        },
-        // {
-        //     title: 'Email',
-        //     dataIndex: 'email',
-        //     key: 'email',
-        // },
-        {
-            title: 'Phone',
-            dataIndex: 'phone',
-            key: 'phone',
+            width: 500,
+            filterSearch: true,
+            sorter: {
+                compare: (a, b) => a.name - b.name,
+                multiple: 1,
+            },
+            onFilter: (value, record) => record.name.startsWith(value),
         },
         {
             title: 'Address',
             dataIndex: 'address',
+            sorter: {
+                compare: (a, b) => a.address - b.address,
+                multiple: 2,
+            },
             key: 'address',
         },
         {
             title: 'Attend At',
             dataIndex: 'date_in',
+            sorter: {
+                compare: (a, b) => a.date_in - b.date_in,
+                multiple: 3,
+            },
             key: 'date_in',
         },
+        // {
+        //     title: 'Phone',
+        //     dataIndex: 'phone',
+        //     key: 'phone',
+        // },
         {
             title: 'Detail',
             render: (text, record) => {
@@ -119,8 +135,11 @@ const Guest = ({ db }) => {
                 querySnapshot.forEach(doc => {
                     data.push({ ...doc.data(), id: doc.id });
                 });
-                const newData = data.map((item, index) => ({
-                    ...item, key: item.id, no: index + 1,
+                const sortedData = _.orderBy(data, ['name', 'address'], 'asc');
+
+                const newData = sortedData.map((item, index) => ({
+                    ...item, key: item.id,
+                    no: index + 1,
                     date_in: item.check_in ? moment(item.check_in.toDate()).format('YYYY-MM-DD HH:mm:ss') : ''
                 }));
                 setSummaryGuest({
@@ -128,8 +147,7 @@ const Guest = ({ db }) => {
                     totalAttending: data.filter(item => item.check_in)?.length,
                     totalNotAttending: data.filter(item => !item.check_in)?.length
                 })
-                const sortedData = _.orderBy(newData, ['createdAt', 'date_in'], 'asc');
-                setListData(sortedData)
+                setListData(newData)
             }).catch(error => {
                 console.error('Error retrieving documents: ', error);
             }).finally(() => setLoading(false))
@@ -168,6 +186,47 @@ const Guest = ({ db }) => {
                 Modal.error({ content: 'Error adding guest' })
             });
 
+        }
+    }
+    const readUploadFile = (e) => {
+        e.preventDefault();
+        if (e.target.files) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const data = e.target.result;
+                const workbook = xlsx.read(data, { type: "array" });
+                const sheetName = workbook.SheetNames[0];
+                const worksheet = workbook.Sheets[sheetName];
+                const json = xlsx.utils.sheet_to_json(worksheet);
+                console.log(json);
+
+                // Add data to Firestore
+                try {
+                    json.forEach(async (row) => {
+                        const colRef = collection(db, 'guest');
+                        const guestQuery = query(colRef, where('name', '==', row?.name));
+                        await getDocs(guestQuery).then(async (querySnapshot) => {
+                            if (querySnapshot.docs.length > 0) {
+                                console.log(`Guest with name ${row.name} already exists, skipping...`);
+                            } else {
+                                const createdAt = serverTimestamp();
+                                await addDoc(colRef, { ...row, createdAt }).then(docRef => {
+                                    console.log('Document added with ID: ', docRef.id);
+                                }).catch(error => {
+                                    console.error('Error adding document: ', error);
+                                    Modal.error({ content: 'Error adding guest' })
+                                });
+                            }
+                        });
+                    });
+
+                    Modal.success({ content: 'Guest added successfully!' })
+                    fetchGuest()
+                } catch (error) {
+                    Modal.error({ content: 'Error import guest' })
+                }
+            };
+            reader.readAsArrayBuffer(e.target.files[0]);
         }
     }
     const onFinishFailed = (errorInfo) => {
@@ -221,11 +280,28 @@ const Guest = ({ db }) => {
 
             </div>
             <div style={{ height: 20 }}></div>
-            <Row>
-                <Button className='mr-2' type="primary" onClick={() => setShowModal(true)}>New Guest</Button>
-
+            <Row justify='space-between'>
+                <Button className='' type="primary" onClick={() => setShowModal(true)}>New Guest</Button>
+                <Row>
+                    <form className='mt-1'>
+                        <label htmlFor="upload  mr-2">Upload File </label>
+                        <input
+                            type="file"
+                            name="upload"
+                            id="upload"
+                            onChange={readUploadFile}
+                        />
+                    </form>
+                    <a href='/format-guest.xlsx' target='_blank' download={'format-guest.xlsx'} className='mt-1'>Download Format Upload</a>
+                </Row>
             </Row>
-            <Table columns={columns} dataSource={listData} loading={loading} pagination={false} />
+            <Table
+                columns={columns}
+                dataSource={listData}
+                loading={loading}
+                pagination={false}
+                scroll={{ y: 470 }}
+            />
             <div height={100}></div>
             <Modal
                 title="Guest Info"
