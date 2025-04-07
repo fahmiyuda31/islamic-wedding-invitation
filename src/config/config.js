@@ -5,9 +5,13 @@ const config = {
       "Kami akan menikah dan mengundang Anda untuk turut merayakan momen istimewa ini.",
     groomName: "Fahmi",
     brideName: "Anggrie",
+    groomBridgeImage: "anggrie-fahmi.jpeg",
+    groomImage: "fahmi.jpeg",
+    brideImage: "anggrie.jpeg",
     parentGroom: "Bapak Groom & Ibu Groom",
     parentBride: "Bapak Bride & Ibu Bride",
     date: "2025-04-19",
+
     maps_url: "https://maps.app.goo.gl/ycqaWswshYrWB1s68",
     maps_embed:
       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.615386662861!2d106.84685207483105!3d-6.443405993547917!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69eb003dfda96d%3A0x3f06dc49941be3b6!2sGarasi%20Wahyu%20Temurun!5e0!3m2!1sid!2sid!4v1742318277440!5m2!1sid!2sid",

@@ -128,7 +128,6 @@ export default function Hero(
                     transition={{ duration: 0.8 }}
                     className="space-y-6 relative z-10"
                 >
-
                     <div className="space-y-2">
                         <motion.p
                             initial={{ opacity: 0 }}
@@ -148,6 +147,33 @@ export default function Hero(
                             {/* {config.data.groomName} & {config.data.brideName} */}
                             {config.data.brideName} & {config.data.groomName}
                         </motion.h2>
+
+                        <div className="space-y-2 text-center">
+                            <div className="space-y-3">
+                                <motion.div
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ delay: 1 }}
+                                    className="flex items-center justify-center space-x-2"
+                                >
+                                    <img
+                                        src={config.data.groomBridgeImage}
+                                        alt={config.data.groomName + " & " + config.data.brideName}
+                                        className="rounded-full"
+                                        // style={{ width: 300, height: 300 }}
+                                    />
+                                </motion.div>
+                            </div>
+
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 1.1 }}
+                                className="space-y-1"
+                            >
+                            </motion.div>
+                        </div>
+                        <div style={{ height: 20 }}></div>
                     </div>
 
                     <motion.div
