@@ -3,6 +3,7 @@ import Events from '@/pages/Events'
 import Location from '@/pages/Location';
 import Wishes from '@/pages/Wishes';
 import Gifts from '@/pages/Gifts';
+import Sambutan from './Sambutan';
 // import { getAnalytics } from "firebase/analytics";
 // Main Invitation Content
 export default function MainContent({ queryName, db }) {
@@ -12,6 +13,7 @@ export default function MainContent({ queryName, db }) {
     return (
         <>
             <Hero queryName={nameGuest} />
+            <Sambutan />
             <Events />
             <Location />
             <Gifts />

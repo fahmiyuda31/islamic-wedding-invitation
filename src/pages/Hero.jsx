@@ -1,13 +1,10 @@
-import { Calendar, Clock, Heart } from 'lucide-react'
-import { motion } from 'framer-motion'
-import { useEffect, useState } from 'react';
 import config from '@/config/config';
-import { formatEventDate } from '@/lib/formatEventDate';
 import { safeBase64 } from '@/lib/base64';
 import { Button } from 'antd';
+import { motion } from 'framer-motion';
 import html2canvas from 'html2canvas';
+import { useEffect } from 'react';
 import QRCode from 'react-qr-code';
-import moment from 'moment';
 
 export default function Hero(
     { queryName }
@@ -19,10 +16,10 @@ export default function Hero(
         if (guestParam) {
             try {
                 const decodedName = safeBase64.decode(guestParam);
-                setGuestName(decodedName);
+                // setGuestName(decodedName);
             } catch (error) {
                 console.error('Error decoding guest name:', error);
-                setGuestName('');
+                // setGuestName('');
             }
         }
     }, []);
@@ -74,9 +71,10 @@ export default function Hero(
                                                 initial={{ opacity: 0 }}
                                                 animate={{ opacity: 1 }}
                                                 transition={{ delay: 0.4 }}
-                                                className="text-gray-600 font-light italic text-base sm:text-md"
+                                                className="text-gray-600 font-light italic text-base sm:text-lg"
                                             >
-                                                InsyaAllah Kami Akan Menikah
+                                                {/* InsyaAllah Kami Akan Menikah */}
+                                                The Wedding of
                                             </motion.p>
                                             <motion.h2
                                                 initial={{ scale: 0.8, opacity: 0 }}
