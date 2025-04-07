@@ -58,7 +58,7 @@ export default function Sambutan() {
                                     src={config.data.brideImage}
                                     alt={config.data.brideImage}
                                     className="rounded-full"
-                                    style={{ height: 300 }}
+                                    style={{ height: 350 }}
                                 />
                             </motion.div>
                             <div style={{ height: 30 }}></div>
@@ -101,7 +101,7 @@ export default function Sambutan() {
                                     src={config.data.groomImage}
                                     alt={config.data.groomImage}
                                     className="rounded-full"
-                                    style={{ height: 300 }}
+                                    style={{ height: 350 }}
                                 />
                             </motion.div>
                             <div style={{ height: 20 }}></div>
