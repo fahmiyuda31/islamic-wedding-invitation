@@ -13,7 +13,7 @@ import React from 'react';
 
 const menuItems = [
   { icon: Home, label: 'Beranda', href: '#home' },
-  { icon: User, label: 'Pengantin ', href: '#bride' },
+  { icon: User, label: 'Bride ', href: '#bride' },
   { icon: CalendarHeart, label: 'Event', href: '#event' },
   { icon: MapPin, label: 'Lokasi', href: '#location' },
   { icon: Gift, label: 'Hadiah', href: '#gifts' },
