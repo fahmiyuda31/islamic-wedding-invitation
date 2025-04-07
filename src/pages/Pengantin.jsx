@@ -91,7 +91,7 @@ export default function Sambutan() {
     return (
         <>
             {/* Event Section */}
-            <section id="event" className="min-h-screen relative overflow-hidden">
+            <section id="bride" className="min-h-screen relative overflow-hidden">
                 <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
@@ -143,7 +143,7 @@ export default function Sambutan() {
                                     src={config.data.brideImage}
                                     alt={config.data.brideImage}
                                     className="rounded-full"
-                                    style={{ height: 500 }}
+                                    style={{ height: 300 }}
                                 />
                             </motion.div>
                             <div style={{ height: 30 }}></div>
@@ -172,7 +172,7 @@ export default function Sambutan() {
                                 Fahmi Yuda Fauzi
                             </p>
                             <p className='text-md'>
-                                Putri Pertama dari Bapak Adi Rusyanto & Ibu Dedeh
+                                Putra Pertama dari Bapak Adi Rusyanto & Ibu Dedeh
                             </p>
                             <div style={{ height: 20 }}></div>
 
@@ -186,7 +186,7 @@ export default function Sambutan() {
                                     src={config.data.groomImage}
                                     alt={config.data.groomImage}
                                     className="rounded-full"
-                                    style={{ height: 500 }}
+                                    style={{ height: 300 }}
                                 />
                             </motion.div>
                             <div style={{ height: 20 }}></div>

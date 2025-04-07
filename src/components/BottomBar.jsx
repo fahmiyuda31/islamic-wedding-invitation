@@ -1,17 +1,19 @@
 // src/components/bottom-bar/BottomBar.jsx
-import React from 'react';
+import { cn } from "@/lib/utils";
 import { motion } from 'framer-motion';
 import {
-  Home,
   CalendarHeart,
-  MapPin,
   Gift,
-  MessageCircleHeart
+  Home,
+  MapPin,
+  MessageCircleHeart,
+  User
 } from 'lucide-react';
-import { cn } from "@/lib/utils";
+import React from 'react';
 
 const menuItems = [
   { icon: Home, label: 'Beranda', href: '#home' },
+  { icon: User, label: 'Pengantin ', href: '#bride' },
   { icon: CalendarHeart, label: 'Event', href: '#event' },
   { icon: MapPin, label: 'Lokasi', href: '#location' },
   { icon: Gift, label: 'Hadiah', href: '#gifts' },

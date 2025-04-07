@@ -36,7 +36,7 @@ export default function Hero(
 
     return (
         <>
-            <section id="home" className="min-h-screen flex flex-col items-center justify-center px-4 py-16 sm:py-10 text-center relative overflow-hidden">
+            <section id="home" className="min-h-screen flex flex-col items-center justify-center px-2 py-0 sm:py-2 text-center relative overflow-hidden">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -98,7 +98,7 @@ export default function Hero(
                                                             src={config.data.groomBridgeImage}
                                                             alt={config.data.groomName + " & " + config.data.brideName}
                                                             className="rounded-full"
-                                                            style={{ height: 300 }}
+                                                            style={{ height: 250 }}
                                                         />
                                                     </motion.div>
                                                 </div>
