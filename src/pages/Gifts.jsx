@@ -33,15 +33,17 @@ export default function Gifts() {
                     animate={hasAnimated ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.8 }}
                     className="text-center space-y-4 mb-16"
+                    style={{ marginTop:-50 }}
+
                 >
-                    <motion.span
+                    {/* <motion.span
                         initial={{ opacity: 0, y: 10 }}
                         animate={hasAnimated ? { opacity: 1, y: 0 } : {}}
                         transition={{ delay: 0.2 }}
                         className="inline-block text-amber-500 font-medium"
                     >
                         Hadiah Pernikahan
-                    </motion.span>
+                    </motion.span> */}
 
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}

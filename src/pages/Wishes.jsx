@@ -113,15 +113,16 @@ export default function Wishes({
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                     className="text-center space-y-4 mb-16"
+                    style={{ marginTop: -50 }}
                 >
-                    <motion.span
+                    {/* <motion.span
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
                         className="inline-block text-amber-500 font-medium"
                     >
                         Kirimkan Doa dan Harapan Terbaik Anda
-                    </motion.span>
+                    </motion.span> */}
 
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
@@ -146,7 +147,10 @@ export default function Wishes({
                 </motion.div>
 
                 {/* Wishes List */}
-                <div className="max-w-2xl mx-auto space-y-6">
+                <div className="max-w-2xl mx-auto space-y-6"
+                    style={{ marginTop: -50 }}
+
+                >
                     <AnimatePresence>
                         <Marquee speed={20}
                             gradient={false}
@@ -218,6 +222,8 @@ export default function Wishes({
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5 }}
                     className="max-w-2xl mx-auto mt-12"
+                    style={{ marginTop:1 }}
+
                 >
                     <form onSubmit={handleSubmitWish} className="relative">
                         <div className="backdrop-blur-sm bg-white/80 p-6 rounded-2xl border border-amber-100/50 shadow-lg">

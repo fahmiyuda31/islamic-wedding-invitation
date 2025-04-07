@@ -15,8 +15,10 @@ export default function Location() {
                     transition={{ duration: 0.8 }}
                     viewport={{ once: true }}
                     className="text-center space-y-4 mb-16"
+                    style={{ marginTop:-50 }}
+
                 >
-                    <motion.span
+                    {/* <motion.span
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
@@ -24,7 +26,7 @@ export default function Location() {
                         className="inline-block text-amber-500 font-medium"
                     >
                         Lokasi Acara
-                    </motion.span>
+                    </motion.span> */}
 
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
@@ -51,7 +53,7 @@ export default function Location() {
                 </motion.div>
 
                 {/* Location Content */}
-                <div className="max-w-6xl mx-auto grid md:grid-row-2 gap-8 items-center">
+                <div className="max-w-6xl mx-auto grid md:grid-row-2 gap-8 items-center" style={{ marginTop:-50 }}>
                     {/* Map Container */}
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}

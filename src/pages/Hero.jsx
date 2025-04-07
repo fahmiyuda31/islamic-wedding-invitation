@@ -37,88 +37,6 @@ export default function Hero(
         });
     };
 
-
-    const CountdownTimer = ({ targetDate }) => {
-        const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
-        function calculateTimeLeft() {
-            const difference = +new Date(targetDate) - +new Date();
-            let timeLeft = {};
-
-            if (difference > 0) {
-                timeLeft = {
-                    hari: Math.floor(difference / (1000 * 60 * 60 * 24)),
-                    jam: Math.floor((difference / (1000 * 60 * 60)) % 24),
-                    menit: Math.floor((difference / 1000 / 60) % 60),
-                    detik: Math.floor((difference / 1000) % 60),
-                };
-            }
-            return timeLeft;
-        }
-        useEffect(() => {
-            const timer = setInterval(() => {
-                setTimeLeft(calculateTimeLeft());
-            }, 1000);
-            return () => clearInterval(timer);
-        }, [targetDate]);
-
-        return (
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8">
-                {Object.keys(timeLeft).map((interval) => (
-                    <motion.div
-                        key={interval}
-                        initial={{ scale: 0.5, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        className="flex flex-col items-center p-3 bg-white/80 backdrop-blur-sm rounded-xl border border-amber-100"
-                    >
-                        <span className="text-xl sm:text-2xl font-bold text-amber-600">
-                            {timeLeft[interval]}
-                        </span>
-                        <span className="text-xs text-gray-500 capitalize">{interval}</span>
-                    </motion.div>
-                ))}
-            </div>
-        );
-    };
-
-    const FloatingHearts = () => {
-        return (
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                {[...Array(8)].map((_, i) => (
-                    <motion.div
-                        key={i}
-                        initial={{
-                            opacity: 0,
-                            scale: 0,
-                            x: Math.random() * window.innerWidth,
-                            y: window.innerHeight
-                        }}
-                        animate={{
-                            opacity: [0, 1, 1, 0],
-                            scale: [0, 1, 1, 0.5],
-                            x: Math.random() * window.innerWidth,
-                            y: -100
-                        }}
-                        transition={{
-                            duration: 4,
-                            repeat: Infinity,
-                            delay: i * 0.8,
-                            ease: "easeOut"
-                        }}
-                        className="absolute"
-                    >
-                        <Heart
-                            className={`w-${Math.floor(Math.random() * 2) + 8} h-${Math.floor(Math.random() * 2) + 8} ${i % 3 === 0 ? 'text-amber-400' :
-                                i % 3 === 1 ? 'text-pink-400' :
-                                    'text-red-400'
-                                }`}
-                            fill="currentColor"
-                        />
-                    </motion.div>
-                ))}
-            </div>
-        );
-    };
-
     return (
         <>
             <section id="home" className="min-h-screen flex flex-col items-center justify-center px-4 py-16 sm:py-10 text-center relative overflow-hidden">
@@ -128,60 +46,13 @@ export default function Hero(
                     transition={{ duration: 0.8 }}
                     className="space-y-6 relative z-10"
                 >
-                    <div className="space-y-2">
-                        <motion.p
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.4 }}
-                            className="text-gray-500 font-light italic text-base sm:text-lg"
-                        >
-                            InsyaAllah Kami Akan Menikah
-                        </motion.p>
-                        <motion.h2
-                            initial={{ scale: 0.8, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            transition={{ delay: 0.6 }}
-                            // className="text-3xl sm:text-5xl font-serif bg-clip-text text-transparent bg-gradient-to-r from-amber-600 to-pink-600"
-                            className="text-3xl sm:text-5xl font-serif bg-clip-text text-transparent bg-gradient-to-r from-[#C58745] to-orange-600"
-                        >
-                            {/* {config.data.groomName} & {config.data.brideName} */}
-                            {config.data.brideName} & {config.data.groomName}
-                        </motion.h2>
-
-                        <div className="space-y-2 text-center">
-                            <div className="space-y-3">
-                                <motion.div
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    transition={{ delay: 1 }}
-                                    className="flex items-center justify-center space-x-2"
-                                >
-                                    <img
-                                        src={config.data.groomBridgeImage}
-                                        alt={config.data.groomName + " & " + config.data.brideName}
-                                        className="rounded-full"
-                                        // style={{ width: 300, height: 300 }}
-                                    />
-                                </motion.div>
-                            </div>
-
-                            <motion.div
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ delay: 1.1 }}
-                                className="space-y-1"
-                            >
-                            </motion.div>
-                        </div>
-                        <div style={{ height: 20 }}></div>
-                    </div>
-
                     <motion.div
                         initial={{ y: 20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ delay: 0.8 }}
                         className="relative max-w-md mx-auto"
                     >
+
                         <div className="absolute inset-0 bg-gradient-to-b from-[#C58745]-50/50 to-white/50 backdrop-blur-md rounded-2xl" />
 
                         <div className="relative px-4 sm:px-8 py-8 sm:py-10 rounded-2xl border border-[#C58745]-100/50">
@@ -189,7 +60,7 @@ export default function Hero(
                                 <div className="w-20 sm:w-32 h-[2px] bg-gradient-to-r from-transparent via-[#C58745]-200 to-transparent" />
                             </div>
 
-                            <div className="space-y-1 text-center">
+                            <div className="space-y-0 text-center">
                                 <div className="space-y-3">
                                     <motion.div
                                         initial={{ scale: 0 }}
@@ -198,49 +69,53 @@ export default function Hero(
                                         className="inline-block mx-auto"
 
                                     >
-                                        {/* <span className="px-4 py-1 text-sm bg-amber-50 text-amber-600 rounded-full border border-amber-200"> */}
-                                        <span
-                                            onClick={() => {
-                                                // Membuka Google Kalender dengan tanggal tertentu
-                                                const tanggal = new Date(config?.data?.date);
-                                                const url = `https://calendar.google.com/calendar/u/0/r/day/${tanggal.getFullYear()}/${tanggal.getMonth() + 1}/${tanggal.getDate()}`;
-                                                window.open(url, '_blank');
-                                            }}
-                                            style={{ cursor: 'pointer' }}
-                                            className="px-4 py-1 text-sm font-bold bg-orange-600 text-white rounded-full border ">Catat Tanggal
-                                        </span>
-                                    </motion.div>
+                                        <div className="space-y-2" style={{ marginTop: -25 }}>
+                                            <motion.p
+                                                initial={{ opacity: 0 }}
+                                                animate={{ opacity: 1 }}
+                                                transition={{ delay: 0.4 }}
+                                                className="text-gray-600 font-light italic text-base sm:text-md"
+                                            >
+                                                InsyaAllah Kami Akan Menikah
+                                            </motion.p>
+                                            <motion.h2
+                                                initial={{ scale: 0.8, opacity: 0 }}
+                                                animate={{ scale: 1, opacity: 1 }}
+                                                transition={{ delay: 0.6 }}
+                                                style={{marginTop:-3,}}
+                                                className="text-3xl sm:text-4xl font-serif bg-clip-text text-transparent bg-gradient-to-r from-[#C58745] to-orange-600"
+                                            >
+                                                {config.data.brideName} & {config.data.groomName}
+                                            </motion.h2>
 
-                                    <motion.div
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: 1 }}
-                                        transition={{ delay: 0.9 }}
-                                        className="flex items-center justify-center space-x-2"
-                                    >
-                                        <Calendar className="w-4 h-4 text-[#C58745]" />
-                                        <span className="text-gray-700 font-medium text-sm sm:text-base">
-                                            {formatEventDate(config.data.date, "full")}
-                                        </span>
-                                    </motion.div>
+                                            <div className="space-y-2 text-center">
+                                                <div className="space-y-3">
+                                                    <motion.div
+                                                        initial={{ opacity: 0 }}
+                                                        animate={{ opacity: 1 }}
+                                                        transition={{ delay: 1 }}
+                                                        className="flex items-center justify-center space-x-2"
+                                                    >
+                                                        <img
+                                                            src={config.data.groomBridgeImage}
+                                                            alt={config.data.groomName + " & " + config.data.brideName}
+                                                            className="rounded-full"
+                                                            style={{ height: 300 }}
+                                                        />
+                                                    </motion.div>
+                                                </div>
 
-                                    <motion.div
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: 1 }}
-                                        transition={{ delay: 1 }}
-                                        className="flex items-center justify-center space-x-2"
-                                    >
-                                        <Clock className="w-4 h-4 text-[#C58745]" />
-                                        <span className="text-gray-700 font-medium text-sm sm:text-base">
-                                            {config.data.time}
-                                        </span>
+                                                <motion.div
+                                                    initial={{ opacity: 0 }}
+                                                    animate={{ opacity: 1 }}
+                                                    transition={{ delay: 1.1 }}
+                                                    className="space-y-1"
+                                                >
+                                                </motion.div>
+                                            </div>
+                                        </div>
                                     </motion.div>
                                 </div>
-
-                                {/* <div className="flex items-center justify-center gap-3">
-                                    <div className="h-px w-8 sm:w-12 bg-[#C58745]" />
-                                    <div className="w-2 h-2 rounded-full bg-[#C58745]" />
-                                    <div className="h-px w-8 sm:w-12 bg-[#C58745]" />
-                                </div> */}
 
                                 <motion.div
                                     initial={{ opacity: 0 }}
@@ -254,18 +129,15 @@ export default function Hero(
                                     <p className="text-gray-600 font-medium text-sm">
                                         Bapak/Ibu/Saudara/i
                                     </p>
-                                    {/* <p className="text-orange-500 font-semibold text-lg">
-                                        {queryName ? queryName : "Tamu"}
-                                    </p> */}
+                                    <div style={{ height: 10 }}></div>
                                     {
                                         queryName ?
                                             <div style={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center", height: "100%" }} id="element-to-download">
                                                 <div style={{ textAlign: "center", width: '100%', padding: 20, borderRadius: 10, boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)" }}>
-                                                    <p className="text-orange-500 font-semibold text-lg">
+                                                    <p className="text-orange-500 font-semibold text-lg" style={{ marginTop: -15 }}>
                                                         {queryName ? queryName : "Tamu"}
                                                     </p>
                                                     <div style={{ height: 10 }}></div>
-
                                                     <QRCode
                                                         value={queryName}
                                                         style={{ maxWidth: '100%', width: '100%' }}
@@ -289,25 +161,7 @@ export default function Hero(
                         <div className="absolute -top-2 -right-2 w-16 sm:w-24 h-16 sm:h-24 bg-amber-100/20 rounded-full blur-xl" />
                         <div className="absolute -bottom-2 -left-2 w-16 sm:w-24 h-16 sm:h-24 bg-amber-100/20 rounded-full blur-xl" />
                     </motion.div>
-
-                    <CountdownTimer targetDate={config.data.date} />
-
-                    <div className="pt-6 relative">
-                        <FloatingHearts />
-                        <motion.div
-                            animate={{
-                                scale: [1, 1.1, 1],
-                                rotate: [0, 5, -5, 0]
-                            }}
-                            transition={{
-                                duration: 2,
-                                repeat: Infinity,
-                                ease: "easeInOut"
-                            }}
-                        >
-                            <Heart className="w-10 sm:w-12 h-10 sm:h-12 text-rose-500 mx-auto" fill="currentColor" />
-                        </motion.div>
-                    </div>
+                   
                 </motion.div>
             </section>
         </>
