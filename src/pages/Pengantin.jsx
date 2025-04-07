@@ -44,7 +44,7 @@ export default function Sambutan() {
                                 Anggrie Zulianie Putri
                             </p>
                             <p className='text-md'>
-                                Putri Pertama dari Bapak Zaenal Zairi & Ibu Yulia Tahar
+                                Putri Pertama dari Bapak Zaenal Zairi & Ibu Yuliar Tahar
                             </p>
                             <div style={{ height: 30 }}></div>
 
