@@ -4,6 +4,7 @@ import Location from '@/pages/Location';
 import Wishes from '@/pages/Wishes';
 import Gifts from '@/pages/Gifts';
 import Sambutan from './Pengantin';
+import OurGallery from './OurGallery';
 // import { getAnalytics } from "firebase/analytics";
 // Main Invitation Content
 export default function MainContent({ queryName, db }) {
@@ -18,6 +19,7 @@ export default function MainContent({ queryName, db }) {
             <Location />
             <Gifts />
             <Wishes db={db} queryName={nameGuest} />
+            <OurGallery />
         </>
     )
 }
