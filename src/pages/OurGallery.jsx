@@ -78,7 +78,7 @@ export default function OurGallery() {
                             video.requestFullscreen();
                         }} />
                     </motion.div>
-                    <motion.div
+                    {/* <motion.div
                         initial={{ scale: 0 }}
                         animate={hasAnimated ? { scale: 1 } : {}}
                         transition={{ delay: 0.4 }}
@@ -88,7 +88,7 @@ export default function OurGallery() {
                             const img = document.querySelector('img[src="/photo_1.jpg"]');
                             img.requestFullscreen();
                         }} />
-                    </motion.div>
+                    </motion.div> */}
                     <motion.div
                         initial={{ scale: 0 }}
                         animate={hasAnimated ? { scale: 1 } : {}}
