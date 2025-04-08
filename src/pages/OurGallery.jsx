@@ -66,14 +66,25 @@ export default function OurGallery() {
                         <BookImage className="w-5 h-5 text-amber-400" />
                         <div className="h-[1px] w-12 bg-amber-200" />
                     </motion.div>
-
                     <motion.div
                         initial={{ scale: 0 }}
                         animate={hasAnimated ? { scale: 1 } : {}}
                         transition={{ delay: 0.4 }}
                         className="flex items-center justify-center gap-4 pt-4"
                     >
-                        <img style={{cursor:'pointer'}} src="/photo_1.jpg" alt="Our Gallery" className="w-4/5" onClick={() => {
+                        <video src="/fix_video.MOV" className="w-4/5" controls onClick={() => {
+                            const video = document.querySelector('video[src="/fix_video.MOV"]');
+                            video.muted = true;
+                            video.requestFullscreen();
+                        }} />
+                    </motion.div>
+                    <motion.div
+                        initial={{ scale: 0 }}
+                        animate={hasAnimated ? { scale: 1 } : {}}
+                        transition={{ delay: 0.4 }}
+                        className="flex items-center justify-center gap-4 pt-4"
+                    >
+                        <img style={{ cursor: 'pointer' }} src="/photo_1.jpg" alt="Our Gallery" className="w-4/5" onClick={() => {
                             const img = document.querySelector('img[src="/photo_1.jpg"]');
                             img.requestFullscreen();
                         }} />
@@ -84,34 +95,11 @@ export default function OurGallery() {
                         transition={{ delay: 0.4 }}
                         className="flex items-center justify-center gap-4 pt-4"
                     >
-                        <img style={{cursor:'pointer'}} src="/photo3.jpg" alt="Our Gallery2" className="w-4/5" onClick={() => {
+                        <img style={{ cursor: 'pointer' }} src="/photo3.jpg" alt="Our Gallery2" className="w-4/5" onClick={() => {
                             const img = document.querySelector('img[src="/photo3.jpg"]');
                             img.requestFullscreen();
                         }} />
                     </motion.div>
-                    <motion.div
-                        initial={{ scale: 0 }}
-                        animate={hasAnimated ? { scale: 1 } : {}}
-                        transition={{ delay: 0.4 }}
-                        className="flex items-center justify-center gap-4 pt-4"
-                    >
-                        <video src="/video1.mp4" className="w-4/5" controls onClick={() => {
-                            const video = document.querySelector('video[src="/video1.mp4"]');
-                            video.requestFullscreen();
-                        }} />
-                    </motion.div>
-                    <motion.div
-                        initial={{ scale: 0 }}
-                        animate={hasAnimated ? { scale: 1 } : {}}
-                        transition={{ delay: 0.4 }}
-                        className="flex items-center justify-center gap-4 pt-4"
-                    >
-                        <video src="/video2.mp4" className="w-4/5" controls onClick={() => {
-                            const video = document.querySelector('video[src="/video2.mp4"]');
-                            video.requestFullscreen();
-                        }} />
-                    </motion.div>
-
 
                 </motion.div>
             </div>

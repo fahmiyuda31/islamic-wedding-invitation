@@ -50,7 +50,7 @@ export default function Wishes({
                 const sortedData = _.orderBy(data, 'timestamp', 'desc');
                 const limitedData = _.take(sortedData, 4);
 
-                console.log('limitedData', limitedData)
+                // console.log('limitedData', limitedData)
                 setWishes(limitedData)
             }).catch(error => {
                 console.error('Error retrieving documents: ', error);
