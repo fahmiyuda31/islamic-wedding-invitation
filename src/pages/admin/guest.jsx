@@ -166,7 +166,8 @@ Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir
 Atas kehadirannya kami ucapkan terima kasih.
 
 Wassalamu'alaikum Wr. Wb.
-            `
+
+Note: Tunjukkan QR code undangan anda kepada petugas untuk mendapatkan souvenir.`
             const whatsappUrl = `whatsapp://send?text=${encodeURIComponent(text)}`
             window.open(whatsappUrl, '_blank')
         } catch (error) {
