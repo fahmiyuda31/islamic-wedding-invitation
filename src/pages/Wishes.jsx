@@ -48,7 +48,7 @@ export default function Wishes({
                     data.push(doc.data())
                 });
                 const sortedData = _.orderBy(data, 'timestamp', 'desc');
-                const limitedData = _.take(sortedData, 4);
+                const limitedData = _.take(sortedData, 50);
 
                 // console.log('limitedData', limitedData)
                 setWishes(limitedData)
