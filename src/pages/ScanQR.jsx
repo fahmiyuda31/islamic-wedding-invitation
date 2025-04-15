@@ -16,7 +16,7 @@ const ScanQR = ({ db }) => {
                 const guestDoc = querySnapshot.docs[0];
                 const check_in = serverTimestamp();
                 updateDoc(guestDoc.ref, { check_in }).then(() => {
-                    Modal.success({ content: `Selamat datang ${guestName}, terima kasih telah hadir` })
+                    Modal.success({ content: `Selamat datang ${guestName}, terima kasih telah hadir`, closable: false })
                     setTimeout(() => {
                         window.location.reload()
                     }, 1500);
