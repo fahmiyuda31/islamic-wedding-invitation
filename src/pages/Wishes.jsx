@@ -152,9 +152,9 @@ export default function Wishes({
 
                 >
                     <AnimatePresence>
-                        <Marquee speed={20}
+                        <Marquee speed={10}
                             gradient={false}
-                            className="[--duration:20s] py-2">
+                            className="[--duration:100s] py-2">
                             {wishes.map((wish, index) => (
                                 <motion.div
                                     key={wish.id}
