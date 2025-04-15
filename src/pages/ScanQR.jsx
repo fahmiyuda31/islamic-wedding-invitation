@@ -17,6 +17,9 @@ const ScanQR = ({ db }) => {
                 const check_in = serverTimestamp();
                 updateDoc(guestDoc.ref, { check_in }).then(() => {
                     Modal.success({ content: `Selamat datang ${guestName}, terima kasih telah hadir` })
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 1500);
                     document.querySelector('input').value = '';
                     document.querySelector('input').focus();
 
@@ -71,6 +74,7 @@ const ScanQR = ({ db }) => {
                                     facingMode="user" // Show the front camera
                                     resolution={1280} // Set the resolution to 1280x720
                                     continuousScan={true}
+                                    constraints={true}
                                     style={{ width: '100%', height: '100%', }} // Set the camera view to full screen
                                 />
                             </div>
